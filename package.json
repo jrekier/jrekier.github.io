@@ -1,7 +1,7 @@
 {
-  "name": "windty",
+  "name": "jrekier.github.io",
   "version": "1.0.0",
-  "description": "Simple 11ty template with tailwind",
+  "description": "Personal website",
   "scripts": {
     "start": "run-p start:*",
     "start:eleventy": "eleventy --serve",
