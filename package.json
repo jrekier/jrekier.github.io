@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/distantcam/windty.git"
+    "url": "https://github.com/jrekier/jrekier.github.io.git"
   },
   "keywords": [
     "eleventy",
@@ -22,9 +22,9 @@
   ],
   "author": "Cam MacFarland",
   "license": "Unlicense",
-  "homepage": "https://github.com/distantcam/windty#readme",
+  "homepage": "https://jrekier.github.io/",
   "bugs": {
-    "url": "https://github.com/distantcam/windty/issues"
+    "url": "https://github.com/jrekier/jrekier.github.io/issues"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.12.1",
