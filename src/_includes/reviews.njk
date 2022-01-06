@@ -1,0 +1,71 @@
+---
+title: {{ title }}
+layout: default
+pagination:
+  data: collections.reviews
+  size: 10
+  alias: posts
+permalink: "{{ title | slug }}/{% if pagination.pageNumber>0 %}page-{{ pagination.pageNumber | plus: 1 }}{% endif %}/index.html"
+---
+
+<header class="pb-4">
+  {% include "navbar.njk" %}
+</header>
+
+{% include "banner.njk" %}
+
+<div class="container max-w-4xl mx-auto md:flex items-start py-20 px-4 md:px-0">
+
+  <!-- articles -->
+  <div class="w-full md:pr-12 mb-12 px-5">
+
+    {# <div class="markdown">
+      {{ content | safe }}
+    </div> #}
+    {%- for post in posts -%}
+      <article class="mb-8 border-b border-gray-700">
+        <a href="{{ post.url }}">    
+          {# <div class="inline-block w-full mb-4 pb-2 text-black rounded-lg group hover:bg-gray-100"> #}
+          <div class="flex items-center w-full mb-4 pb-2 text-black rounded-lg group">
+            {# <!-- Image -->
+            {% if post.data.featured_image %}
+            <div class="rounded-t-lg h-48 overflow-hidden">
+              <img src="{{ post.data.featured_image }}" class="h-48 w-full object-cover group-hover:opacity-75">
+            </div>
+            {% endif %} #}
+            {% if post.data.cover_image %}
+              <img class="inline-block w-20 md:w-24 mx-auto mr-4 " src="{{ post.data.cover_image }}"/>
+            {% endif %}
+            <div class="inline-block">
+              <!-- Title -->
+              <p class="px-1 pt-2 font-serif group-hover:text-red-700 text-xl md:text-2xl uppercase">
+                {{ post.data.title }}
+              </p>
+              <!-- description -->
+              <p class="px-1 text-gray-700 leading-normal mb-2">
+                {{post.data.description}}
+              </p>
+              <div class="px-1 mb-2 text-sm text-gray-700">
+                by <a href="#" class="text-gray-700 hover:text-red-700">{{post.data.author}}</a> on {{ post.date | readableDate }}
+                <span class="font-bold mx-1"> | </span>
+                <a href="#" class="text-gray-700 hover:text-red-700">{{post.data.category}}</a>
+                <span class="font-bold mx-1"> | </span>
+                {% for tag in post.data.tags %}
+                <a href="/tags/{{tag}}"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 hover:text-red-400 mr-2">#{{tag}}</span></a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </article>
+    {%- endfor -%}
+
+    <div class="flex items-sart justify-between text-xs">
+      {% if pagination.href.previous %}<a href="{{ pagination.href.previous }}" class="bg-gray-900 text-gray-200 hover:text-red-700 no-underline py-2 px-3 rounded">Newer</a>{%else%}<span></span>{%endif%}
+      {% if pagination.href.next %}<a href="{{ pagination.href.next }}" class="bg-gray-900 text-gray-200 hover:text-red-700 no-underline py-2 px-3 rounded">Older</a>{%else%}<span></span>{%endif%}
+    </div>
+  </div>
+
+  {# {% include "sidebar.njk" %} #}
+
+</div>

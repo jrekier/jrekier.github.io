@@ -1,0 +1,17 @@
+<div class="container mx-auto text-center group">
+  <div class="h-64 mt-4 md:mt-0 sm:rounded-md overflow-hidden bg-cover bg-center relative" style="background-image: url({{featured_image}})">
+    <div class="bg-gray-900 bg-opacity-50 flex justify-center items-center h-full">
+      <div class="px-10 max-w-xl">
+        <h2 class="text-3xl lg:text-4xl text-white font-serif group-hover:text-red-700">{{ title }}</h2>
+        <p class="mt-2">      
+        <div class="markdown text-white group-hover:text-red-700">
+          {{ content | safe }}
+        </div>
+        </p>
+      </div>
+    </div>
+    {% if image_credit %} 
+      <a href="{{image_url}}" class="absolute bottom-0 right-0 px-4 text-xs text-gray-700 hover:text-red-700">Image credit: {{image_credit}}</a>
+    {% endif %}
+  </div>
+</div>

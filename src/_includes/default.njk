@@ -26,11 +26,39 @@
   <title>{{ title or metadata.title }}</title>
 
   <link rel="stylesheet" href="{{ '/site.css' | url }}">
+  <link href="/prism-theme.css" rel="stylesheet">  
+
+  <style>
+    .MathJax {
+      min-width: 0;
+      padding:0.25em;
+      overflow-x:auto;
+      overflow-y: hidden;
+    }
+  </style>
+  <script>
+    MathJax = {
+      loader: {load: ['[tex]/bussproofs']},
+      tex: {
+        packages: {'[+]': ['bussproofs']},        // extensions to use
+        inlineMath: [ ['$','$'], ['\\(','\\)'] ],  // start/end delimiter pairs for in-line math
+        processEscapes: true,      // use \$ to produce a literal dollar sign
+        processEnvironments: true, // process \begin{xxx}...\end{xxx} outside math mode
+        processRefs: true,         // process \ref{...} outside of math mode
+        tags: 'all'              // or 'none' or 'ams'        
+      }
+    };
+  </script>  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body class="font-sans leading-normal tracking-normal text-gray-900">
-
-  {{ content | safe }}
-
+  <div>
+    {{ content | safe }}
+  </div>
+  <script src="/js/navbar.js"></script>
+  {% include "footer.njk" %}
 </body>
 </html>

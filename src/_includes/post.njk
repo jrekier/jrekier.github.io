@@ -1,0 +1,116 @@
+---
+layout: default
+permalink: "/{{ category }}/{{ page.date | date: '%Y' }}/{{ title | slug }}/"
+---
+
+<header>
+  {% include "navbar.njk" %}
+</header>
+
+{# <div class="container relative mx-auto flex flex-wrap py-6"> #}
+<div class="container flex flex-cols-8 gap-4">
+
+  <!-- Sidebar Section -->
+  {# <aside class="fixed w-full hidden md:w-1/4 md:flex flex-col items-center px-3 md:py-24"> #}
+  <aside class="hidden md:hidden lg:col-span-2 lg:flex flex-col items-center px-3 md:py-4 h-screen sticky top-0">
+
+    {# <div class="w-full bg-white shadow flex flex-col my-4 p-6"> #}
+    <div class="flex flex-col my-4 p-6">
+      <p class="font-serif text-xl mb-2">
+        {{title}}
+      </p>
+      <p href="#" class="text-sm text-gray-700">
+        {{ page.date | readableDate }}
+      </p>
+      <a href="/about/" class="flex relative items-center py-4">
+        <img class="w-12 h-12 rounded-full inline-flex items-center" src="/images/bio-photo.jpg" alt="Buster"/>
+        <p class="px-4 py-2 font-bold text-sm">{{author}}</p>
+      </a>
+      {% if cover_image %}
+        <img alt="content" class="w-full rounded-sm object-cover" src="{{ cover_image }}">
+      {% endif %}
+      <div class="px-2 py-4">
+        {% for tag in tags %}
+        <a href="/tags/{{tag}}"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm text-gray-700 hover:text-red-700 mr-2">#{{tag}}</span></a>
+        {% endfor %}
+      </div>    
+    </div>
+
+  </aside>
+
+  <!-- Post Section -->
+  {# <section class="w-full md:w-3/4 flex flex-col items-center px-3 py-20"> #}
+  <section class="col-span-8 lg:col-span-6 lg:flex flex-col items-center px-3 py-4">  
+
+    {# <article class="flex flex-col shadow my-4"> #}
+    <article class="flex flex-col my-4">
+      <div class="bg-white flex flex-col justify-start pb-4">
+        {# post info #}
+        <a href="#" class="text-red-700 text-sm font-bold uppercase pb-4">{{ category }}</a>
+        <a href="#" class="text-3xl font-serif hover:text-red-700">{{ title }}</a>
+      </div>
+      <p href="#" class="flex lg:hidden text-sm text-gray-700 pb-4">
+        {{ page.date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}}
+      </p>
+      <a href="/about/" class="flex lg:hidden relative items-center pb-4">
+        <img class="w-12 h-12 rounded-full inline-flex items-center" src="/images/icons/bio-photo.jpg" alt="Buster"/>
+        <p class="px-4 py-2 font-bold text-sm">{{author}}</p>
+      </a>
+      <div class="text-gray-900 font-semibold text-lg lg:text-xl pt-4 pb-4">
+        {{ description }}
+      </div>
+      <!-- Article Image -->
+      {% if featured_image %}
+      <div class="text-center relative block max-h-64 overflow-hidden mb-4 pt-4">
+        <img alt="content" class="w-full rounded-lg object-cover" src="{{ featured_image }}">
+        {% if image_credit %}
+          <a href="{{image_url}}" class="absolute bottom-0 right-0 px-4 text-sm text-gray-700 hover:text-red-700">Credit: {{image_credit}}</a>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="markdown font-serif">
+        {{ content | safe }}
+      </div>
+
+    </article>
+
+    {# <div class="w-full flex flex-col text-center md:text-left md:flex-row shadow bg-white mt-10 mb-10 p-6"> #}
+    {# <div class="w-full flex flex-col text-center md:text-left md:flex-row bg-white mt-10 mb-10 p-6">
+      <div class="w-full md:w-1/5 flex justify-center md:justify-start pb-4">
+        <img src="/images/icons/bio-photo.jpg" alt="Buster" class="w-20 h-20 rounded-full mr-4">
+      </div>
+      <div class="flex-1 flex flex-col justify-center md:justify-start">
+        <p class="font-semibold text-2xl">{{ author }}</p>
+        <p class="pt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel neque non libero suscipit suscipit eu eu urna.</p>
+        <div class="flex items-center justify-center md:justify-start text-2xl no-underline text-blue-800 pt-4">
+          <a class="" href="#">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a class="pl-4" href="#">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a class="pl-4" href="#">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a class="pl-4" href="#">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div> #}
+    {# <div class="w-full flex pt-6">
+      <a href="#" class="w-1/2 bg-white hover:shadow text-left p-6">
+        <p class="text-lg text-red-700 font-bold flex items-center"><i class="fas fa-arrow-left pr-1"></i> Previous</p>
+        <p class="pt-2">Lorem Ipsum Dolor Sit Amet Dolor Sit Amet</p>
+      </a>
+      <a href="#" class="w-1/2 bg-white hover:shadow text-right p-6">
+        <p class="text-lg text-red-700 font-bold flex items-center justify-end">Next <i class="fas fa-arrow-right pl-1"></i></p>
+        <p class="pt-2">Lorem Ipsum Dolor Sit Amet Dolor Sit Amet</p>
+      </a>
+    </div> #}
+  </section>
+
+
+
+</div>
