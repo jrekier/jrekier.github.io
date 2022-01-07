@@ -3,7 +3,7 @@ layout: post
 title: Some bell curves
 author: jerem.
 category: 'blog'
-description: "I work out some of the properties of the gaussian function from its generating differential equation including its first integral."
+description: "I work out some of the properties of the Gaussian function from its generating differential equation including its first integral."
 tags: ['math']
 featured_image: "/images/posts_data/bell-curve/featured.jpg"
 ---
@@ -16,7 +16,7 @@ $$
 \end{equation}
 $$
 
-There are many functions of mathematics that derive from differential equations like this one. Take the following example where the funtion of a single space variable, $y(x)$, is not just proportional to its first derivative, but rather satisfies
+There are many functions of mathematics that derive from differential equations like this one. Take the following example where the function of a single space variable, $y(x)$, is not just proportional to its first derivative, but rather satisfies
 
 $$
 \begin{equation}
@@ -33,7 +33,7 @@ $$
 \leftrightarrow y(x)&=Ae^{-\frac{1}{2}\frac{x^2}{\sigma^2}}~,\label{eq:y(x)bell}
 \end{align}
 $$
-where $\log(x)$ is the natural logarithm (the inverse of the exponential function, $e^x$) and $A$ and $B\equiv \log{A}$ are constants. This function is the gaussian function centred at the origin and has many applications in many areas of mathematics including probability theory, statistics, information theory, quantum mechanics, etc... Equation \eqref{eq:dydxbell} is a perfectly valid -- although not very common -- definition of this function and has the advantage of explicitly showing some of the function's properties. For example, it is invariant under the transformation that takes $x$ to $-x$, contrary to Eq. \eqref{eq:dydtexp} when $t$ goes to $-t$.
+where $\log(x)$ is the natural logarithm (the inverse of the exponential function, $e^x$) and $A$ and $B\equiv \log{A}$ are constants. This function is the Gaussian function centred at the origin and has many applications in many areas of mathematics including probability theory, statistics, information theory, quantum mechanics, etc... Equation \eqref{eq:dydxbell} is a perfectly valid -- although not very common -- definition of this function and has the advantage of explicitly showing some of the function's properties. For example, it is invariant under the transformation that takes $x$ to $-x$, contrary to Eq. \eqref{eq:dydtexp} when $t$ goes to $-t$.
 
 By taking the derivative on both sides of Eq. \eqref{eq:dydtexp}, we obtain the following second order differential equation :
 
@@ -46,11 +46,11 @@ Since the sign of $y$ is constant for all values of $x$, this means that $\frac{
 
 ![bell curve](/images/posts_data/bell-curve/bell.png)
 
-Because of its shape, the gaussian function is sometimes referred to as the *bell curve*. From Eq. (\ref{eq:dydxbell}), we see that its first derivative is simply (assuming $A=1$)
+Because of its shape, the Gaussian function is sometimes referred to as the *bell curve*. From Eq. (\ref{eq:dydxbell}), we see that its first derivative is simply (assuming $A=1$)
 $$
 \frac{dy}{dx}=\frac{x}{\sigma^2}e^{-\frac{1}{2}\frac{x^2}{\sigma^2}}~.
 $$
-Its first integral, however, cannot be evaluated in terms of simple functions. There is however a notable exception when the integral covers the entire real line:
+Its first integral, however, cannot be evaluated in terms of simple functions. There is, however, a notable exception when the integral covers the entire real line:
 $$
 \begin{equation}
 I\equiv\int_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{x^2}{\sigma^2}}dx=?\label{eq:I?}
@@ -64,7 +64,7 @@ I^2&=\int_{-\infty}^{\infty}e^{-\frac{1}{2}\frac{x^2}{\sigma^2}}dx\int_{-\infty}
 &=\int_{0}^{2\pi}d\theta\int_{0}^{\infty}r e^{-\frac{1}{2}\frac{r^2}{\sigma^2}}dr~.
 \end{align}
 $$
-The integrand on the right is equivalent to the right-hand-side of Eq.(2) where $x\rightarrow r$. By substituting the left-hand-side, we arrive at
+The integrand on the right is equivalent to the right-hand side of Eq.(2) where $x\rightarrow r$. By substituting the left-hand side, we arrive at
 $$
 \begin{align}
 I^2&=2\pi\sigma^2\int_{0}^{\infty}\frac{d}{dr}e^{-\frac{1}{2}\frac{r^2}{\sigma^2}}dr\\\\
@@ -84,7 +84,7 @@ The figure below shows the plot of Eq. \eqref{eq:Erf} for different values of $\
 
 ![error function](/images/posts_data/bell-curve/error.png)
 
-From Eq. \eqref{eq:d2ydx2bell} and the definition of the error function, one can compute the following *weighted* gaussian integral:
+From Eq. \eqref{eq:d2ydx2bell} and the definition of the error function, one can compute the following *weighted* Gaussian integral:
 
 $$
 \begin{align}
