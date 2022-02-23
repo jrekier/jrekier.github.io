@@ -2,8 +2,8 @@ const { DateTime } = require('luxon')
 const fs = require("fs");
 const htmlmin = require("html-minifier");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
-const nodePandoc = require('node-pandoc');
-const path = require("path");
+// const nodePandoc = require('node-pandoc');
+// const path = require("path");
 
 module.exports = function(eleventyConfig) {
 
