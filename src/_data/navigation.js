@@ -9,7 +9,7 @@ module.exports = [
     },
     {
       'label': 'Reading Notes',
-      'url': '/reading-notes'
+      'url': "/reviews"
     },
     {
       'label': 'About',
