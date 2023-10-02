@@ -41,7 +41,7 @@ $$
 $$
 
 
-This is a particular example of the [logistic differential equation](https://en.wikipedia.org/wiki/Logistic_function#Logistic_differential_equation). If we ignore the second term on the right-hand side for a moment and compare what remains with our [well-known equation for the exponential growth](/blog/2020/what-growth-means), we can identify the combination $(\beta-\gamma)$ as the growth rate. There are two possible behaviours: either $\beta>\gamma$ and so the solution grows exponentially, or $\beta<\gamma$ and the solution decays exponentially in time. Either of those two behaviours dominates when $i$ is small. When it $i$ approaches $1$, the decaying effect of the second term kicks in and dominates over the first term. The two behaviours are represented on the following figure.
+This is a particular example of the [logistic differential equation](https://en.wikipedia.org/wiki/Logistic_function#Logistic_differential_equation). If we ignore the second term on the right-hand side for a moment and compare what remains with our [well-known equation for the exponential growth](/blog/2020/what-growth-means), we can identify the combination $(\beta-\gamma)$ as the growth rate. There are two possible behaviours: either $\beta>\gamma$ and so the solution grows exponentially, or $\beta<\gamma$ and the solution decays exponentially in time. Either of those two behaviours dominates when $i$ is small. When $i$ approaches $1$, the decaying effect of the second term kicks in and dominates over the first term. The two behaviours are represented on the following figure.
 
 ![SIS](/images/posts_data/epidemiology-model/SIS2.png)
 
