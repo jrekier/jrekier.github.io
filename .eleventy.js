@@ -1,7 +1,8 @@
 const { DateTime } = require('luxon')
 const fs = require("fs");
-const htmlmin = require("html-minifier");
+const htmlmin = require("html-minifier-security-fix");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+// const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 // const nodePandoc = require('node-pandoc');
 // const path = require("path");
 
@@ -71,6 +72,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  // // If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
+	// eleventyConfig.addPlugin(UpgradeHelper);
 
   return {
     dir: {
