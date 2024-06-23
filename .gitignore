@@ -1,5 +1,4 @@
 node_modules/
 _site/
 src/_drafts/
-.DS_Store
-src/.DS_Store
+**/.DS_Store
