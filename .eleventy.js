@@ -54,6 +54,9 @@ module.exports = function(eleventyConfig) {
     }
     return coll.reverse()
   })
+	eleventyConfig.addCollection("projects", function (collectionApi) {
+		return collectionApi.getFilteredByGlob("src/projects/*.md");
+	});
   // markdown stuff
   let markdownIt = require("markdown-it");
   let markdownItFootnote = require("markdown-it-footnote");
