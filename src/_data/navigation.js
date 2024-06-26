@@ -8,8 +8,8 @@ module.exports = [
       'url': '/blog'
     },
     {
-      'label': 'Reading Notes',
-      'url': "/reading-notes"
+      'label': 'Notes',
+      'url': "/quartz"
     },
     {
       'label': 'About',
