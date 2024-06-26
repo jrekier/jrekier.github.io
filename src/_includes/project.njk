@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<header class="pb-4">
+  {% include "navbar.njk" %}
+</header>
+
+<section class="text-gray-700 body-font">
+  <div class="container px-5 pb-24 mx-auto">
+    <!-- Main Content -->
+    <div class="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 mx-auto mt-10">
+        <div class="markdown py-4"> <!-- Adjusted padding -->
+            <style>
+                .markdown img, .markdown figure {
+                max-width: 90%; /* Ensures images do not exceed their container width */
+                height: auto; /* Keeps the image aspect ratio intact */
+                display: block; /* Changes images from inline to block level elements */
+                margin: 0 auto; /* Centers the image horizontally */
+                padding-top: 20px;
+                padding-bottom: 20px;
+                text-align: center;
+                }
+            </style>
+            <h1 class="text-xl font-bold text-center mt-5">{{ title }}</h1>
+            {{ content | references | safe }}
+        </div>
+        {% if content | bibliography %}
+          {% include "bibliography.njk" %}
+        {% endif %}
+    </div>
+  </div>
+</section>
