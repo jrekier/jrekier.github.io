@@ -11,46 +11,37 @@ layout: default.njk
 <section class="text-gray-700 body-font">
   <div class="container px-5 pb-24 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
-      <div class="rounded-lg h-64 overflow-hidden">
+      {# <div class="rounded-lg h-64 overflow-hidden">
         <img alt="content" class="object-cover object-center h-full w-full" src="{{ featured_image }}">
-      </div>
+      </div> #}
       <div class="flex flex-col sm:flex-row mt-10">
-        <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-          <img src="/images/bio-photo.jpg" alt="Buster" class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-          <div class="flex flex-col items-center text-center justify-center">
-            <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">Jérémy Rekier</h2>
-            <div class="w-12 h-1 bg-red-500 rounded mt-2 mb-4"></div>
+        <div class="text-center sm:w-1/3 sm:pr-8 sm:py-8">
+          <img src="/images/mypic.jpg" alt="Me" class="w-20 h-20 rounded-full bg-gray-200 text-gray-400 mx-auto">
+          <div class="mt-4">
+            <h2 class="font-medium title-font text-lg text-gray-900">Jérémy Rekier</h2>
+            <div class="w-12 h-1 bg-red-500 rounded mt-2 mb-4 mx-auto"></div>
             <p class="text-base text-gray-900">{{ bio }}</p>
-            <div class="flex md:m-0">
-              <div class="mx-4">
-                <a href="https://twitter.com/JRekier" class="px-4 text-sm">      
-                  <img class="h-8" src="/images/socialmedia/043-twitter.svg">
-                </a>
-              </div>
-              <div class="mx-4">
-                <a href="https://www.reddit.com/user/DrWatsonJr" class="px-4 text-sm">      
-                  <img class="h-8" src="/images/socialmedia/042-reddit.svg">
-                </a>
-              </div>
-              <div class="mx-4">
-                <a href="https://github.com/jrekier" class="px-4 text-sm">      
-                  <img class="h-8" src="/images/socialmedia/038-github.svg">
-                </a>
-              </div>
+            <!-- Social Media Links -->
+            <div class="flex justify-center space-x-4 mt-4">
+              <a href="https://mathstodon.xyz/@jrekier" class="text-sm">
+                <img class="h-6" src="/images/socialmedia/051-mastodon.svg" alt="Mastodon">
+              </a>
+              <a href="https://bsky.app/profile/jrekier.bsky.social" class="text-sm">
+                <img class="h-6" src="/images/socialmedia/052-bluesky.svg" alt="Bluesky">
+              </a>
+              <a href="https://github.com/jrekier" class="text-sm">
+                <img class="h-6" src="/images/socialmedia/038-github.svg" alt="GitHub">
+              </a>
             </div>
           </div>
         </div>
-        <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-300 sm:border-t-0 sm:border-b-0 border-t border-b mt-4 pt-4 pb-6 sm:mt-0 sm:pb-0 text-center sm:text-left">
+        <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-300 mt-4 pt-4 pb-6 sm:mt-0 sm:pb-0 text-center sm:text-left">
           <div class="markdown">
             {{ content | safe }}
           </div>
-          {# <a class="text-indigo-500 inline-flex items-center">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </a> #}
         </div>
       </div>
+
       <div class="markdown"><h1>List of scientific publications</h1></div>
       {% for item in publications |reverse %}
       <ul class="list-disc">
