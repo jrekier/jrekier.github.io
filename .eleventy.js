@@ -4,7 +4,8 @@ const htmlmin = require("html-minifier-security-fix");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 // const UpgradeHelper = require("@11ty/eleventy-upgrade-help");
 // const nodePandoc = require('node-pandoc');
-// const path = require("path");
+const path = require("path");
+const eleventyCiteproc = require("eleventy-plugin-citeproc");
 
 module.exports = function(eleventyConfig) {
 
@@ -16,7 +17,8 @@ module.exports = function(eleventyConfig) {
 
   // Passthrough
   eleventyConfig.addPassthroughCopy({ "src/static": "." });
-  eleventyConfig.addPassthroughCopy({ "src/images": "./images" });  
+  eleventyConfig.addPassthroughCopy({ "src/assets/images": "./images" });  
+  // eleventyConfig.addPassthroughCopy({ "src/images": "./images" });  
   eleventyConfig.addPassthroughCopy({ "src/js": "./js" });  
 
   // Watch targets
@@ -61,6 +63,10 @@ module.exports = function(eleventyConfig) {
   let markdownIt = require("markdown-it");
   let markdownItFootnote = require("markdown-it-footnote");
   let markdownItPrism = require('markdown-it-prism');
+  let markdownfigcaption = require('markdown-it-image-figures');
+  let figoptions = {
+    figcaption: true
+  };
   
   let options = {
     html: true, // Enable HTML tags in source
@@ -70,11 +76,18 @@ module.exports = function(eleventyConfig) {
   // configure the library with options
   let markdownLib =  markdownIt(options);
   markdownLib.use(markdownItFootnote);
-  markdownLib.use(markdownItPrism);  
+  markdownLib.use(markdownItPrism);
+  markdownLib.use(markdownfigcaption,figoptions);  
   // set the library to process markdown files
   eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addPlugin(syntaxHighlight);
+
+  eleventyConfig.addPlugin(eleventyCiteproc, {
+    bibliographicStylePath: path.join(__dirname, 'geophysics.csl'),
+    bibliographicLocalizationPath: path.join(__dirname, 'locales-en-US.xml'),
+    bibliographicDataPath: path.join(__dirname, 'bibliography.json')
+});
 
   // // If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
 	// eleventyConfig.addPlugin(UpgradeHelper);
@@ -108,5 +121,5 @@ function htmlminTransform(content, outputPath) {
     });
     return minified;
   }
-  return content;
+  return `<main>${this.references(content)}</main><footer>${this.bibliography(content)}</footer>`;
 }
