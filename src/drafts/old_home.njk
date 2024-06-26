@@ -1,0 +1,72 @@
+---
+title: old_home
+layout: default.njk
+---
+
+{# Logo title and navigation #}
+<header class="overflow-hidden bg-white z-50">
+  <div class="px-6 lg:px-12 md:flex items-center">
+    <div class="w-full flex flex-col items-center relative z-10">
+      <a href="/" class="flex py-10 items-center justify-center group">
+        <img class="h-20 lg:h-24 group-hover:shadow-xl rounded-full" src="/images/geology.svg" alt="Logo"/>
+        <p class="px-4 py-2 font-serif text-4xl lg:text-5xl group-hover:text-red-700">Globally Warm</p>
+      </a>
+    </div>
+    <nav id="navbar" class="h-16 w-full bg-transparent flex justify-center items-center px-4 md:pt-2">
+      <div class="px-4 py-2 flex text-lg lg:text-2xl text-center border-t border-b">
+        {% for item in navigation %}
+        <a href="{{ item.url }}"class="inline-block px-2 py-1 font-serif hover:text-red-700 mt-0 ml-2">{{ item.label }}</a>
+        {% endfor %}
+      </div>
+    </nav>
+  </div>
+</header>
+
+{% include "banner.njk" %}
+
+{# few latest publications #}
+<div class="container mx-auto flex flex-wrap py-12">
+  <section class="w-full md:w-4/6 body-font overflow-hidden flex flex-col px-3 relative">
+    <div class="container px-5 mx-auto">
+        <p class="font-serif font-bold text-xl border-b border-gray-500 mb-4 uppercase">Latest Blog Posts</p>
+        {%- for post in collections.posts.slice(0,5) -%}
+          <article class="mb-8">
+            <a href="{{ post.url }}">           
+              <div class="mb-4 pb-2 text-black rounded-lg group">
+                <!-- Title -->
+                <p class="px-1 pt-2 font-serif group-hover:text-red-700 text-xl md:text-2xl">
+                  {{ post.data.title }}
+                </p>
+                <!-- description -->
+                <p class="px-1 text-gray-700 leading-normal mb-2">
+                  {{post.data.description}}
+                </p>
+                <div class="px-1 mb-2 text-sm text-gray-700">
+                  by <a href="/about/" class="text-gray-700 hover:text-red-700">{{post.data.author}}</a> on {{ post.date | readableDate }}
+                  <span class="font-bold mx-1"> | </span>
+                  <a class="text-gray-700 hover:text-red-700">{{post.data.category}}</a>
+                  <span class="font-bold mx-1"> | </span>
+                  {% for tag in post.data.tags %}
+                  <a href="/tags/{{tag}}"><span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 hover:text-red-400 mr-2">#{{tag}}</span></a>
+                  {% endfor %}
+                </div>
+              </div>
+            </a>
+          </article>
+        {%- endfor -%}
+    </div>
+      <a href="/blog/" class="inline-flex justify-end items-center hover:text-red-700">
+        <p>See All posts</p>
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+  </section>
+
+  <aside class="w-full mt-6 md:mt-0 md:w-2/6 border-gray-200 flex flex-col items-center px-3 relative">
+
+    {% include "sidebar.njk" %}
+
+  </aside>
+</div>
+
