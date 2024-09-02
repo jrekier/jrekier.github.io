@@ -11,4 +11,8 @@ The Earth has a liquid layer beneath its rocky mantle. This liquid core spans ab
 
 The motion of the fluid core also influences the Earth's rotation in several ways. It amplifies the Earth's response to the gravitational torque exerted by the Sun and Moon, known as nutations. It also causes small variations in the length of the day through a series of complex processes involving the exchange of angular momentum at the Core-Mantle Boundary [@RekierEtAl2021].
 
-In this project, we focus on the hydrodynamics and hydromagnetic *waves* excited within the fluid core, governed by the complex interplay of the rotation, buoyancy, and the magnetic field [@TrianaEtAl2021]. A particular emphasis is put on *inertial* waves, whose motion is dictated by the action of the Coriolis force. 
+In this project, our team focuses on the hydrodynamics and hydromagnetic *waves* excited within the fluid core, governed by the complex interplay of the rotation, buoyancy, and the magnetic field [@TrianaEtAl2021]. A particular emphasis is put on *inertial* waves, whose motion is dictated by the action of the Coriolis force. 
+
+We have shown that the mode of rotation known to geodesists as the Free Core Nutation (FCN) is equivalent to the simplest inertial mode of a freely rotating fluid body known as the Spin-Over mode [@Rekier2020]. In a later study, we further clarified the relevance of the Spin-Over mode to rotating planets [@Rekier2022a].
+
+In parallel, we have investigated the effect of the ohmic dissipation caused by the presence of the magnetic field on those modes in more details [@TrianaEtAl2021]. Along the way, we have been led to take an expected detour into some fundamental aspects of the theory of electromagnetism [@RekierEtAl2023]. 
