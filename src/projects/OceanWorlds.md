@@ -9,6 +9,6 @@ Past space missions have revealed the existence of liquid water beneath the surf
 
 ![Tidal forcing of extraterrestrial oceans](/images/OceanWorlds.jpg "Tides heat icy moons oceans through periodic stretching and bending of their solid layers (Illustration after May Jernigan).")
 
-Our team showed that *inertial modes* excited by tides and libration can amplify the viscous dissipation in the ocean of Enceladus, one of Saturn's moon [@Rekier2019]. 
+Our team showed that *inertial modes* excited by tides and libration can amplify the viscous dissipation in the ocean of Enceladus, one of Saturn's moons [@Rekier2019]. 
 
-Although this dissipation is insufficient to close thr heat budget, tidally excited fluid modes have characteristic signatures observable from space that can be used to probe the interior of icy moons.
+Although this dissipation is insufficient to close the heat budget, tidally excited fluid modes have characteristic signatures observable from space that can be used to probe the interior of icy moons.
