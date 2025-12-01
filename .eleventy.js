@@ -86,7 +86,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(eleventyCiteproc, {
     bibliographicStylePath: path.join(__dirname, 'geophysics.csl'),
     bibliographicLocalizationPath: path.join(__dirname, 'locales-en-US.xml'),
-    bibliographicDataPath: path.join(__dirname, 'bibliography.json')
+    bibliographicDataPath: path.join(__dirname, 'src/bibliography.json')
 });
 
   // // If you have other `addPlugin` calls, it’s important that UpgradeHelper is added last.
