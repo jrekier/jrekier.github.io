@@ -90,5 +90,17 @@ module.exports = [
   {
     "reference": "S.-A. (施勝安) Shih, S. A. Triana, J. Rekier, V. Dehant (2023) Turbulent dissipation in the boundary layer of precession-driven flow in a sphere. AIP Advances 13, 075025.",
     "url": "https://doi.org/10.1063/5.0146932"
-  }    
+  },
+  {
+    "reference": "Rekier, J. and Triana, S.A. (2024) “On the computation of resonant tidal dissipation in the liquid layers of planets and stars,” Proceedings of the International Astronomical Union, 18(S382), pp. 167–173.",
+    "url": "https://doi.org/10.1017/S174392132300385X"
+  },
+  {
+    "reference": "Rekier, J., Triana, S.A. and Buffett, B. (2025) “Boundary Condition for the Electric Field in Earth’s Core Models With Conducting Boundaries,” Geophysical Research Letters, 52(7), p. e2024GL113585.",
+    "url": "https://doi.org/10.1029/2024GL113585"
+  },
+  {
+    "reference": "Seuren, F. et al. (2025) “The influence of a stably stratified layer on the hydromagnetic waves in the Earth’s core and their electromagnetic torques,” Geophysical Journal International, p. ggaf431.",
+    "url": "https://doi.org/10.1093/gji/ggaf431"
+  }      
 ]

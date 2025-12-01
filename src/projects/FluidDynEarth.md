@@ -15,4 +15,4 @@ In this project, our team focuses on the hydrodynamics and hydromagnetic *waves*
 
 We have shown that the mode of rotation known to geodesists as the Free Core Nutation (FCN) is equivalent to the simplest inertial mode of a freely rotating fluid body known as the Spin-Over mode [@Rekier2020]. In a later study, we further clarified the relevance of the Spin-Over mode to rotating planets [@Rekier2022a].
 
-In parallel, we have investigated the effect of the ohmic dissipation caused by the presence of the magnetic field on those modes in more details [@TrianaEtAl2021]. Along the way, we have been led to take an expected detour into some fundamental aspects of the theory of electromagnetism [@RekierEtAl2023]. 
+In parallel, we have investigated the effect of the ohmic dissipation caused by the presence of the magnetic field on those modes in more details [@TrianaEtAl2021]. Along the way, we have been led to take an expected detour into some fundamental aspects of the theory of electromagnetism [@RekierEtAl2023] and their application [@RekierEtAl2025]. 
