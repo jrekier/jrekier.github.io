@@ -5,7 +5,8 @@ module.exports = [
     // },
     {
       'label': 'Blog',
-      'url': '/blog'
+      'url': 'https://jrekier.github.io/bit-blog'
+      // 'url': '/blog'
     },
     {
       'label': 'Notes',
