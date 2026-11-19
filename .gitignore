@@ -1,4 +1,8 @@
-node_modules/
+# build output
 _site/
-src/_drafts/
+.cache/
+
+# dependencies
+node_modules/
+
 **/.DS_Store

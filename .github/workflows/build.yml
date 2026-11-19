@@ -1,32 +1,29 @@
-name: Build Eleventy
+name: Build and deploy
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write # to push the built site to the gh-pages branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node.js current
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: current
-
-      - name: Install dependencies & build
-        run: |
-          npm ci
-          npm run build
+          node-version: 22
+          cache: npm
+      # installs exactly what package-lock.json lists; .npmrc disables install scripts
+      - run: npm ci
+      - run: node engine/build.mjs
+      # GitHub Pages serves the gh-pages branch (unchanged from before)
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          #publish_dir is the folder on the docker instance which eleventy builds the pages to.
-          #it is not the docs folder in the repository
           publish_dir: _site
-          #publish_branch is the branch in the repository.
-          #this is where you need to point GitHub pages
           publish_branch: gh-pages

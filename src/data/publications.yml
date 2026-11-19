@@ -1,0 +1,35 @@
+# Publications shown on /about/, newest first.
+# key: the citation key from your Zotero export (Better BibTeX); everything else
+# (authors, title, journal, DOI) is read from src/bibliography.json.
+# arxiv: optional arXiv identifier.
+
+- key: SeurenEtAl2025
+- key: RekierEtAl2025
+- key: RekierTriana2024
+- key: ShihEtAl2023
+- key: SeurenEtAl2023
+- key: RekierEtAl2023a
+  arxiv: "2303.00718"
+- key: PuicaEtAl2023
+- key: TrianaEtAl2022
+- key: Rekier2022a
+- key: TrianaEtAl2021
+- key: RekierEtAl2021
+- key: ZhuEtAl2021
+- key: Triana2021
+- key: StaelensEtAl2021
+- key: Rekier2020
+  arxiv: "2004.08218"
+- key: Rekier2019
+  arxiv: "1904.02487"
+- key: Triana2019
+  arxiv: "1904.11837"
+- key: Rekier2018
+  arxiv: "1904.05221"
+- key: Dehant2017
+- key: RekierEtAl2016
+  arxiv: "1509.08354"
+- key: RekierEtAl2015
+  arxiv: "1409.3476"
+- key: ClesseRekier2014
+  arxiv: "1407.1984"
