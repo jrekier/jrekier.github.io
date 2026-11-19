@@ -7,16 +7,20 @@ export const esc = (s = "") =>
 export const html = (strings, ...values) =>
   strings.reduce((out, s, i) => out + s + (i < values.length ? [values[i]].flat().join("") : ""), "");
 
-const social = (site) =>
-  html`<ul class="social">${site.config.social.map(
-    (s) => html`<li><a href="${s.href}" rel="me" title="${esc(s.label)}"><img src="${site.image(s.icon)}" alt="${esc(s.label)}" width="24" height="24"></a></li>`,
-  )}</ul>`;
+/** Email · ADS · GitHub · … (rel="me" lets Mastodon verify the link back to this site) */
+const links = (site) =>
+  html`<p class="links">${site.config.links.map((l) => html`<a href="${l.href}" rel="me">${esc(l.label)}</a>`).join(' <span aria-hidden="true">·</span> ')}</p>`;
+
+const affiliation = (site) => {
+  const a = site.config.affiliation;
+  return a ? html`<p class="affiliation"><a href="${a.href}">${esc(a.label)}</a></p>` : "";
+};
 
 // ---------------------------------------------------------------------------
 
 export function layout(site, { title, description, path, body, image = "mypic.jpg" }) {
   const c = site.config;
-  const fullTitle = title ? `${title} · ${c.name}` : `${c.name} · ${c.title}`;
+  const fullTitle = title ? `${title} · ${c.name}` : c.name;
   return html`<!doctype html>
 <html lang="${c.lang}">
 <head>
@@ -38,18 +42,15 @@ export function layout(site, { title, description, path, body, image = "mypic.jp
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="/"><img src="${site.image("geology.svg")}" alt="" width="40" height="40"> ${esc(c.title)}</a>
+  <a class="brand" href="/"><img src="${site.image("geology.svg")}" alt="" width="36" height="36"> ${esc(c.name)}</a>
   <nav>${c.nav.map((n) => html`<a href="${n.href}"${site.abs(path) === site.abs(n.href.replace(/^\//, "")) ? ' aria-current="page"' : ""}>${esc(n.label)}</a>`)}</nav>
 </header>
 <main>
 ${body}
 </main>
 <footer class="site-footer">
-  <div>
-    <p>© ${new Date().getFullYear()} <a href="/about/">${esc(c.name)}</a></p>
-    <p class="small">Icons by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com/">flaticon.com</a></p>
-  </div>
-  ${social(site)}
+  <p>© ${new Date().getFullYear()} ${esc(c.name)}</p>
+  ${links(site)}
 </footer>
 ${site.dev ? '<script src="/__reload.js"></script>' : ""}
 </body>
@@ -66,10 +67,11 @@ export function homePage(site, { intro, projects }) {
     body: html`
 <section class="hero">
   <img class="portrait" src="${site.image("mypic.jpg")}" alt="Portrait of ${esc(c.name)}" width="240" height="240">
-  <h1 class="name">${esc(c.name)}, PhD.</h1>
+  <h1 class="name">${esc(c.name)}</h1>
+  ${affiliation(site)}
   <div class="rule"></div>
   <div class="prose">${intro}</div>
-  ${social(site)}
+  ${links(site)}
 </section>
 
 <section class="projects">
@@ -91,34 +93,44 @@ export function homePage(site, { intro, projects }) {
   });
 }
 
-export function aboutPage(site, { content, bio, publications }) {
+const pubLinks = (p) =>
+  [p.doi && html`<a href="https://doi.org/${esc(p.doi)}">doi:${esc(p.doi)}</a>`, p.arxiv && html`<a href="https://arxiv.org/abs/${esc(p.arxiv)}">arXiv:${esc(p.arxiv)}</a>`]
+    .filter(Boolean)
+    .join(" · ");
+
+const pubList = (entries) =>
+  html`<ul class="pubs">${entries.map((p) => html`<li id="${esc(p.key)}">${p.html} ${pubLinks(p)}</li>`)}</ul>`;
+
+const SECTION_TITLES = { preprints: "Preprints", theses: "Theses and monographs", software: "Software" };
+
+export function aboutPage(site, { content, publications }) {
   const c = site.config;
+  const { papers = [], ...others } = publications;
+  const years = [...new Set(papers.map((p) => p.year))];
+
   return layout(site, {
     title: "About",
     path: "about/",
     body: html`
 <section class="about">
   <aside>
-    <img class="portrait small" src="${site.image("mypic.jpg")}" alt="Portrait of ${esc(c.name)}" width="80" height="80">
+    <img class="portrait small" src="${site.image("mypic.jpg")}" alt="Portrait of ${esc(c.name)}" width="96" height="96">
     <h1 class="name">${esc(c.name)}</h1>
+    ${affiliation(site)}
     <div class="rule"></div>
-    <p>${esc(bio)}</p>
-    ${social(site)}
+    ${links(site)}
+    ${c.cv ? html`<p><a class="button" href="${c.cv}">CV (PDF)</a></p>` : ""}
   </aside>
   <div class="prose">${content}</div>
 </section>
 
 <section class="publications prose">
-  <h2 id="publications">List of scientific publications</h2>
-  <ol reversed>
-  ${publications.map(
-    (p) => html`
-    <li id="${esc(p.key)}">${p.html}
-      ${p.doi ? html`<a href="https://doi.org/${esc(p.doi)}">doi:${esc(p.doi)}</a>` : ""}
-      ${p.arxiv ? html` · <a href="https://arxiv.org/abs/${esc(p.arxiv)}">arXiv:${esc(p.arxiv)}</a>` : ""}
-    </li>`,
-  )}
-  </ol>
+  <h2 id="publications">Publications</h2>
+  ${years.map((y) => html`<h3 class="year">${y}</h3>${pubList(papers.filter((p) => p.year === y))}`)}
+  ${Object.entries(others)
+    .filter(([, entries]) => entries.length)
+    .map(([name, entries]) => html`<h2 id="${esc(name)}">${esc(SECTION_TITLES[name] ?? name)}</h2>${pubList(entries)}`)}
+  ${c.publications.fullList ? html`<p class="full-list"><a href="${c.publications.fullList}">Full list on NASA ADS</a></p>` : ""}
 </section>`,
   });
 }
