@@ -103,10 +103,32 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.3; }
 .prose figcaption { font-size: 0.875rem; color: var(--muted); margin-top: 0.5rem; }
 .prose blockquote { margin-left: 0; padding-left: 1.2rem; border-left: 3px solid var(--line); color: var(--muted); }
 
+/* the Earth cutaway: the globe stays put while the captions scroll past */
+.earth { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+.earth-stage { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; }
+.earth-stage canvas, .earth-fallback { width: 100%; max-width: 34rem; height: auto; aspect-ratio: 1; }
+.earth canvas { display: none; }
+.earth.is-live canvas { display: block; }
+.earth.is-live .earth-fallback { display: none; }
+.earth-steps { padding: 25vh 0 35vh; }
+.earth-step { min-height: 75vh; display: flex; flex-direction: column; justify-content: center; }
+.earth-step h2 { font-size: 1.7rem; margin: 0 0 0.5rem; }
+.earth-step p { margin: 0; max-width: 26rem; color: var(--muted); }
+.credit { font-size: 0.75rem; color: var(--muted); }
+.credit a { text-decoration: underline; }
+
 /* citations */
 #refs .csl-entry { padding-left: 2rem; text-indent: -2rem; margin: 0.5rem 0; font-size: 0.92rem; font-family: var(--serif); }
 #references { text-align: center; font-size: 1.3rem; margin-top: 3rem; }
 
+@media (max-width: 48rem) {
+  .earth { grid-template-columns: 1fr; gap: 0; }
+  .earth-stage { height: 55vh; z-index: 0; }
+  .earth-steps { position: relative; z-index: 1; padding: 0 0 30vh; }
+  .earth-step { min-height: 90vh; justify-content: flex-end; }
+  .earth-card { background: var(--bg); border: 1px solid var(--line); border-radius: 0.6rem; padding: 1rem 1.1rem; box-shadow: 0 6px 24px rgb(0 0 0 / 0.12); }
+  .earth-step h2 { font-size: 1.35rem; }
+}
 @media (max-width: 40rem) {
   body { padding: 0 1rem; }
   .about { grid-template-columns: 1fr; }

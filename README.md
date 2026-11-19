@@ -25,6 +25,10 @@ Pushing to `main` builds the site and publishes it to the `gh-pages` branch, whi
 | Site settings: navigation, social links, citation style | `engine/config.mjs` |
 | Look | `engine/assets/style.css` |
 | Page structure | `engine/templates.mjs` |
+| Earth cutaway captions | `earth:` in `src/index.md` |
+| Earth cutaway scene (three.js) | `engine/assets/earth.js`, bundled by esbuild at build time |
+| Earth textures (Solar System Scope, CC BY 4.0) | `src/static/textures/` |
+| Still image shown without WebGL/JavaScript | `src/assets/images/earth-cutaway.png` |
 | Private archive (never built or published) | `archive/` |
 
 ## Zotero

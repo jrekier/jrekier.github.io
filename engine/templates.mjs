@@ -60,7 +60,30 @@ ${site.dev ? '<script src="/__reload.js"></script>' : ""}
 
 // ---------------------------------------------------------------------------
 
-export function homePage(site, { intro, projects }) {
+/** The scroll-driven Earth cutaway (engine/assets/earth.js draws it). */
+const earthSection = (site, { steps, fallback }) =>
+  steps?.length
+    ? html`
+<section class="earth" data-textures="/textures/" aria-labelledby="earth-title">
+  <div class="earth-stage">
+    <canvas aria-hidden="true"></canvas>
+    ${fallback ? html`<img class="earth-fallback" src="${fallback.url}" width="${fallback.width}" height="${fallback.height}" alt="Cutaway of the Earth showing the mantle, the liquid outer core and the solid inner core">` : ""}
+  </div>
+  <div class="earth-steps">
+  ${steps.map(
+    (s, i) => html`
+    <div class="earth-step"><div class="earth-card">
+      <h2${i === 0 ? ' id="earth-title"' : ""}>${esc(s.title)}</h2>
+      <p>${esc(s.text)}</p>
+    </div></div>`,
+  )}
+    <p class="credit">Surface textures: <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></p>
+  </div>
+</section>
+<script type="module" src="/js/earth.js?v=${site.version}"></script>`
+    : "";
+
+export function homePage(site, { intro, projects, earth = {} }) {
   const c = site.config;
   return layout(site, {
     path: "",
@@ -73,7 +96,7 @@ export function homePage(site, { intro, projects }) {
   <div class="prose">${intro}</div>
   ${links(site)}
 </section>
-
+${earthSection(site, earth)}
 <section class="projects">
   <h2>Some of my projects</h2>
   <p>Things I’ve been working on.</p>

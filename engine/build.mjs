@@ -144,7 +144,14 @@ async function main() {
 
   // home and about
   const home = await loadPage("index.md");
-  await write("index.html", T.homePage(site, { intro: await render(home.body, { path: home.file, frontmatter: home.data }), projects }));
+  await write(
+    "index.html",
+    T.homePage(site, {
+      intro: await render(home.body, { path: home.file, frontmatter: home.data }),
+      projects,
+      earth: { steps: home.data.earth, fallback: await processImage(join(P.images, "earth-cutaway.png")) },
+    }),
+  );
 
   const about = await loadPage("about.md");
   await write(
@@ -165,6 +172,18 @@ async function main() {
   // static files and stylesheet
   await cp(P.static, P.out, { recursive: true });
   await copyFile(join(root, "engine/assets/style.css"), join(P.out, "style.css"));
+
+  // the Earth cutaway script, bundled with the parts of three.js it uses
+  const esbuild = await import("esbuild");
+  await esbuild.build({
+    entryPoints: [join(root, "engine/assets/earth.js")],
+    outfile: join(P.out, "js/earth.js"),
+    bundle: true,
+    minify: !DEV,
+    format: "esm",
+    target: "es2020",
+    logLevel: "warning",
+  });
 
   console.log(`Built home, about, ${projects.length} projects, ${Object.keys(redirects).length} redirects in ${Math.round(performance.now() - t0)} ms → ${relative(root, P.out)}/`);
 }
