@@ -1,5 +1,5 @@
-// Copied from the bit-blog engine (engine/dev.mjs).
 #!/usr/bin/env node
+// Copied from the bit-blog engine (engine/dev.mjs).
 // Local preview: builds the site, serves it, and rebuilds + reloads the
 // browser whenever you save a post, an image, or a file of the engine.
 //
