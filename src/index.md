@@ -1,8 +1,5 @@
 ---
-layout: home
-title: "Hello World !"
-description: "Debout les damnés de la Terre!" # quotation marks to allow colon
-author: jerem.
+title: Home
 ---
 
 # Hi! I'm Jérémy.

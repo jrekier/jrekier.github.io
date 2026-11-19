@@ -120,9 +120,9 @@ async function main() {
   await mkdir(P.out, { recursive: true });
 
   const render = createRenderer({ root, config, resolveImage });
-  for (const name of ["mypic.jpg", "geology.svg", ...config.social.map((s) => s.icon)]) await useImage(name);
+  for (const name of ["mypic.jpg", "geology.svg"]) await useImage(name);
 
-  // projects: src/projects/*.md -> /projects/<FileName>/, ordered by their `date`
+  // projects: src/projects/*.md -> /projects/<FileName>/, ordered by their `order` field
   const projects = [];
   for (const name of (await readdir(join(P.content, "projects"))).filter((f) => f.endsWith(".md"))) {
     const { file, data, body } = await loadPage(`projects/${name}`);
@@ -135,11 +135,11 @@ async function main() {
       path: `projects/${id}/`,
       image,
       imageFile: data.featured_image,
-      sortKey: String(data.date ?? ""),
+      order: data.order ?? Infinity,
       html: await render(body, { path: file, frontmatter: data }),
     });
   }
-  projects.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+  projects.sort((a, b) => a.order - b.order || a.title.localeCompare(b.title));
   for (const p of projects) await write(`${p.path}index.html`, T.projectPage(site, p));
 
   // home and about
@@ -151,7 +151,6 @@ async function main() {
     "about/index.html",
     T.aboutPage(site, {
       content: await render(about.body, { path: about.file, frontmatter: about.data }),
-      bio: about.data.bio ?? config.description,
       publications: await renderPublications({ root, config }),
     }),
   );

@@ -1,8 +1,8 @@
 ---
 title: "Numerical Methods for Internal Planetary Dynamics"
 featured_image: "gi-modes.png"
-description: "Numerical Methods for Internal Planetary Dynamics"
-date: "1917-10-27" # fake date for sorting
+description: "Kore, a fast spectral code for rotating fluids and magnetohydrodynamics."
+order: 4
 ---
 
 The physics of planetary and astrophysical liquid layers is governed by the equations of *(magneto-)hydrodynamics*. In most cases, these coupled partial differential equations in time and space cannot be solved exactly and approximations must be made. In the astrophysical context, it is often justifiable to assume that the Coriolis force is the dominant cause of advection. This assumption allows simplifying the equations, but they still cannot be solved analytically in most cases, and numerical resolutions are needed to achieve progress. 

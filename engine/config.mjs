@@ -4,9 +4,9 @@ export default {
   origin: "https://jrekier.github.io",
   base: "", // the site lives at the root of the domain
 
-  title: "Globally Warm",
   name: "Jérémy Rekier",
-  description: "I am a scientist working on the physics of the Earth's core and magnetic field at the Royal Observatory of Belgium.",
+  description: "Scientist at the Royal Observatory of Belgium, working on the physics of the Earth's core, rotation and magnetic field.",
+  affiliation: { label: "Royal Observatory of Belgium", href: "https://www.astro.oma.be/en/" },
   lang: "en",
 
   // header navigation (full URLs for the other sites)
@@ -16,17 +16,23 @@ export default {
     { label: "About", href: "/about/" },
   ],
 
-  // shown under the photo and in the footer; icons live in src/assets/images/socialmedia/
-  social: [
-    { label: "Mastodon", href: "https://mathstodon.xyz/@jrekier", icon: "socialmedia/051-mastodon.svg" },
-    { label: "Bluesky", href: "https://bsky.app/profile/jrekier.bsky.social", icon: "socialmedia/052-bluesky.svg" },
-    { label: "GitHub", href: "https://github.com/jrekier", icon: "socialmedia/038-github.svg" },
+  // shown under your name and in the footer, in this order
+  links: [
+    // { label: "ORCID", href: "https://orcid.org/0000-0000-0000-0000" },          // TODO: your ORCID iD
+    // { label: "Scholar", href: "https://scholar.google.com/citations?user=XXXX" }, // TODO: your Scholar profile
+    { label: "ADS", href: "https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" },
+    { label: "GitHub", href: "https://github.com/jrekier" },
+    { label: "Mastodon", href: "https://mathstodon.xyz/@jrekier" },
+    { label: "Bluesky", href: "https://bsky.app/profile/jrekier.bsky.social" },
   ],
+
+  // a CV linked from the about page: put the PDF in src/static/ and set e.g. "/cv.pdf"
+  cv: "",
 
   paths: {
     content: "src", // index.md, about.md, projects/*.md
     images: "src/assets/images", // served at /images/ (PNG/JPEG converted to WebP)
-    static: "src/static", // copied as-is to the root (favicons, .nojekyll)
+    static: "src/static", // copied as-is to the root (favicons, .nojekyll, cv.pdf)
     out: "_site",
     cache: ".cache",
   },
@@ -37,7 +43,11 @@ export default {
     style: "geophysics.csl",
     heading: "References",
   },
-  publications: "src/data/publications.yml",
+  publications: {
+    file: "src/data/publications.yml",
+    highlight: ["Rekier, J.", "J. Rekier"], // shown in bold in author lists
+    fullList: "https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc",
+  },
 
   // old addresses -> new ones (e.g. blog posts that moved to bit-blog)
   redirects: "src/data/redirects.json",

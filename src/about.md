@@ -1,11 +1,13 @@
 ---
-layout: about.njk
 title: About
-author: jerem.
-bio: "I am a scientist currently working on the physics of the Earth's core and magnetic field at the Royal Observatory of Belgium."
-featured_image: /images/earth-interior.jpg
 ---
 
-# This website
+<!-- DRAFT bio, written from your project pages and public sources: edit freely. -->
 
-This is a personal space for thoughts and ideas on science, math or any other topic that I like. I also try to share comments on books or other works that I enjoy or that have inspired me. 
+I am a researcher at the [Royal Observatory of Belgium](https://www.astro.oma.be/en/), in the Reference Systems and Planetology directorate. I study the dynamics of rotating fluids: the liquid core of the Earth and how it couples to the planet's rotation and magnetic field, the subsurface oceans of icy moons, and the fluid layers of other planets and stars.
+
+Much of this work relies on numerical models. With colleagues, I develop [Kore](https://github.com/repepo/kore), a spectral code for rotating fluids and magnetohydrodynamics.
+
+I obtained my PhD in cosmology and general relativity at the University of Namur in 2015, before turning to the interiors of planets.
+
+I also enjoy explaining science to a broad audience, on my [blog](https://jrekier.github.io/bit-blog/) and elsewhere. In 2024, the Royal Academy of Belgium awarded me the Mailly Prize for the popularisation of astronomy.
