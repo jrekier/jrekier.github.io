@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="journey-page">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A journey through my research · Jérémy Rekier</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/lean.css">
+<link rel="preload" as="image" type="image/webp" href="/textures/earthday4k.lo.webp">
+<link rel="preload" as="image" type="image/webp" href="/textures/earthclouds2k.lo.webp">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="/">Jérémy Rekier</a>
+  <nav><a href="#">Blog</a> <a href="#">Notes</a> <a href="#">About</a></nav>
+</header>
+<canvas class="journey-canvas" data-textures="/textures/" aria-hidden="true"></canvas>
+<div class="journey-shade" aria-hidden="true"></div>
+<div class="journey-overlay" aria-hidden="true">
+  <p class="journey-date"><span>1 July 2031</span> <span class="sep">·</span> JUICE's tour</p>
+  <p class="journey-date journey-passes"><span>Pass 1 · 0 h</span> <span class="sep">·</span> 500 km above Ganymede</p>
+  <div class="journey-labels"></div>
+</div>
+<nav class="journey-chapters" aria-label="Chapters">
+  <a href="#earth" data-chapter="earth">Earth</a>
+  <a href="#bepicolombo" data-chapter="mercury">Mercury</a>
+  <a href="#juice" data-chapter="jupiter"><span class="wide">Jupiter's moons</span><span class="narrow">Jupiter</span></a>
+  <a href="#enceladus" data-chapter="enceladus">Enceladus</a>
+  <a href="#sun" data-chapter="sun">The Sun</a>
+</nav>
+<main class="journey">
+  <section class="journey-step" data-stop="earth" id="earth"><div class="journey-card">
+    <h1>A journey through my research</h1>
+    <p>My research is on the dynamics of fluids inside rotating planets, moons and stars: liquid iron cores, subsurface oceans and the convective layers of the Sun. This page follows that work from the Earth outwards.</p>
+    <p class="journey-hint">↓ Scroll</p>
+  </div></section>
+  <section class="journey-step" data-stop="wobble"><div class="journey-card">
+    <h2>Precession and nutation</h2>
+    <p>The Earth's rotation axis traces a cone in space once every 26,000 years: this is precession. The gravitational pull of the Moon and the Sun adds smaller periodic oscillations on top, called nutations. The largest has a period of 18.6 years.</p>
+    <p class="note">Greatly sped up, with the nutations exaggerated about a thousand times.</p>
+  </div></section>
+  <section class="journey-step" data-stop="waves"><div class="journey-card">
+    <h2>Waves in the liquid core</h2>
+    <p>As the Earth nutates, the liquid iron core does not follow the mantle exactly. Seen from the rotating Earth, the forcing has a frequency close to one cycle per day, and in a rotating fluid it excites inertial waves. These concentrate in thin shear layers inclined at 60° to the equator. Friction in the layers affects the Earth's nutations.</p>
+    <p><a href="/projects/FluidDynEarth/">Fluid dynamics of the Earth's core →</a></p>
+  </div></section>
+  <section class="journey-step" data-stop="core"><div class="journey-card">
+    <h2>The magnetic field and the core flow</h2>
+    <p>Flows in the liquid iron core generate the Earth's magnetic field. Just below the core's surface the flow carries the field lines with it, so changes in the field measured at the surface can be used to map the flow. Most of it drifts westward, in large gyres and smaller eddies. The magnetic field also couples the core to the mantle, which affects the length of the day and the nutations.</p>
+    <p class="note">Colours show the flow: amber eastward, teal westward. An illustration, not a model output, and greatly sped up.</p>
+    <p><a href="/projects/FluidDynEarth/">Fluid dynamics of the Earth's core →</a></p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="bepi-pass" id="bepicolombo"><div class="journey-card">
+    <h2>BepiColombo</h2>
+    <p>A mission of the European and Japanese space agencies (ESA and JAXA) to Mercury, launched in October 2018. A spacecraft travelling towards the Sun gains speed, so reaching orbit around Mercury requires braking. BepiColombo used eight years of electric propulsion and nine planetary flybys: the Earth once, Venus twice and Mercury six times.</p>
+    <p>Its two orbiters, ESA's MPO and JAXA's Mio, arrive at Mercury together in November 2026 and then separate. Mio will study the magnetic field and the space environment; MPO will study the surface and the interior. Science operations begin in spring 2027.</p>
+    <p><a href="https://www.esa.int/Science_Exploration/Space_Science/BepiColombo">The mission at ESA →</a></p>
+    <p class="note">Simplified model, drawn close to the camera. The spacecraft is about 30 m across its solar arrays.</p>
+  </div></section>
+  <section class="journey-step" data-stop="mercury" id="mercury"><div class="journey-card">
+    <h2>Mercury</h2>
+    <p>Mercury's liquid core extends to over 80% of the planet's radius, compared with 55% for the Earth. Instead of nutating, Mercury librates: its rotation speeds up and slows down with an 88-day period. In the core, this forcing excites shear layers inclined at 70° to the equator. Mercury's magnetic field is about a hundred times weaker than the Earth's, and its centre is offset about 480 km north of the planet's centre.</p>
+    <p>BepiColombo will measure the libration, the gravity field and the magnetic field from orbit.</p>
+    <p class="note">Libration exaggerated (the actual amplitude is about 40 arcseconds). The darker band is a possible stably stratified layer at the top of the core.</p>
+    <p><a href="/projects/PlanetaryAstrophysics/">Planetary and astrophysical fluid dynamics →</a></p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="juice-pass" id="juice"><div class="journey-card">
+    <h2>JUICE</h2>
+    <p>ESA's Jupiter Icy Moons Explorer, launched in April 2023. It uses gravity assists from the Earth and the Moon, Venus, and the Earth again to reach Jupiter in July 2031.</p>
+    <p><a href="https://www.esa.int/Science_Exploration/Space_Science/Juice">The mission at ESA →</a></p>
+    <p class="note">Simplified model, drawn close to the camera. The spacecraft is about 27 m across its solar arrays.</p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="juice-tour"><div class="journey-card">
+    <h2>JUICE's tour of the Jupiter system</h2>
+    <p>From July 2031, JUICE spends three and a half years in orbit around Jupiter and makes about 35 flybys of Europa, Ganymede and Callisto. Each flyby changes its trajectory towards the next one. At the end of 2034 it enters orbit around Ganymede, the first spacecraft to orbit a moon other than our own.</p>
+    <p class="note">Seen from above Jupiter. JUICE's planned trajectory (ESA, SPICE kernels). The moons move much more slowly than in reality but keep their 1:2:4 orbital resonance, and reach their real positions (JPL Horizons) when JUICE enters orbit around Ganymede. Moons drawn 16 times larger.</p>
+  </div></section>
+  <section class="journey-step" data-stop="ganymede" id="ganymede"><div class="journey-card">
+    <h2>Ganymede</h2>
+    <p>Io, Europa and Ganymede are in orbital resonance: their periods are in the ratio 1:2:4. Their mutual gravitational pull keeps their orbits slightly eccentric, so the tides raised by Jupiter vary along each orbit. Ganymede, the largest moon in the Solar System, has an ocean beneath its ice.</p>
+    <p>From 2034, JUICE will orbit Ganymede at an altitude of 500 km and map its surface, gravity field and magnetic field.</p>
+    <p class="note">Ganymede to scale. The mapped strips are drawn much wider than the instruments' actual footprints.</p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="ocean-worlds"><div class="journey-card">
+    <h2>Three ocean worlds</h2>
+    <p>Europa, Ganymede and Callisto at their true relative sizes. All three are thought to have a salty liquid-water ocean beneath an ice shell, but their interiors differ.</p>
+    <p>My work addresses the same questions for all three: the depth of their oceans, how the water flows, how they respond to Jupiter's tides, and which of these properties a spacecraft can measure.</p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="ocean-depth"><div class="journey-card">
+    <h2>Ocean depths</h2>
+    <p>Europa's ocean is thought to start a few tens of kilometres below the surface, to be about 100 km deep, and to be in direct contact with the rocky interior. Ganymede's starts about 150 km below the surface, between the ice shell above and layers of high-pressure ice below. Callisto's is the least constrained: probably about 100 km below the surface and more than 100 km deep, above an interior that may be only partly differentiated into ice and rock.</p>
+    <p>These differences determine whether the water is in contact with rock, how heat and salts are transported through the ocean, and how much each moon deforms under Jupiter's tides.</p>
+    <p class="note">Interiors drawn to scale from representative models. The thicknesses are uncertain, often by a factor of two.</p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="ocean-probes"><div class="journey-card">
+    <h2>Three ways to probe an ocean</h2>
+    <ol class="probes">
+      <li data-probe="0"><strong>Magnetic induction.</strong> Jupiter's field at Ganymede varies with a period of about 10 hours. The salty ocean conducts and responds with an induced field, whose strength and delay depend on its thickness and salinity.</li>
+      <li data-probe="1"><strong>Tides.</strong> The moon deforms under Jupiter's tides, much more if its ice shell lies on an ocean. Measured through the gravity field and the topography.</li>
+      <li data-probe="2"><strong>Rotation.</strong> The ice shell's rotation oscillates over each orbit, more if an ocean decouples it from the interior. Measured by tracking surface features.</li>
+    </ol>
+    <figure class="response probe-chart">
+      <svg viewBox="0 0 300 64" role="img" aria-label="Schematic chart of the measurement currently shown, against time.">
+        <line x1="0" y1="32" x2="300" y2="32" class="axis" />
+        <g data-probe-chart="0"><polyline data-probe-line="ext" class="grey" points="" /><polyline data-probe-line="ind" class="blue" points="" /></g>
+        <g data-probe-chart="1" style="display:none"><polyline data-probe-line="tideOcean" class="blue" points="" /><polyline data-probe-line="tideSolid" class="grey" points="" /></g>
+        <g data-probe-chart="2" style="display:none"><polyline data-probe-line="libOcean" class="blue" points="" /><polyline data-probe-line="libSolid" class="grey" points="" /></g>
+        <line data-probe-cursor x1="0" y1="0" x2="0" y2="64" />
+      </svg>
+      <figcaption><span data-probe-chart="0">Grey: Jupiter's varying field. Blue: induced field.</span><span data-probe-chart="1" style="display:none">Blue: with an ocean. Grey: without.</span><span data-probe-chart="2" style="display:none">Blue: with an ocean. Grey: without.</span> Schematic; effects greatly exaggerated.</figcaption>
+    </figure>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="enceladus-ocean" id="enceladus"><div class="journey-card">
+    <h2>Enceladus</h2>
+    <p>A moon of Saturn about 500 km across, with jets of water vapour and ice erupting from its south polar region. Beneath about 20 km of ice is a global ocean about 40 km deep. Because its orbit is slightly eccentric, the rotation of its ice shell oscillates once per orbit.</p>
+    <p>This forcing excites inertial waves in the rotating ocean. They form the same kind of shear layers as in the Earth's core, confined to a thin shell.</p>
+    <p class="note">Layers to scale; the ocean's depth is uncertain.</p>
+  </div></section>
+  <section class="journey-step" data-stop="enceladus-resonance"><div class="journey-card">
+    <h2>Resonances and tidal heating</h2>
+    <p>The ocean has its own modes of oscillation. When the forcing frequency is close to that of one of these modes, the response is resonant and the energy dissipated as heat increases sharply.</p>
+    <figure class="response">
+      <svg viewBox="0 0 300 92" role="img" aria-label="Schematic: the heat dissipated in the ocean against forcing frequency, a low background with sharp peaks at resonances with the ocean's modes. A marker sweeps across it; the shear layers glow when it crosses a peak.">
+        <line x1="0" y1="88" x2="300" y2="88" class="axis" />
+        <polyline data-response points="" />
+        <line data-sweep x1="0" y1="0" x2="0" y2="88" />
+      </svg>
+      <figcaption>Heat dissipated against forcing frequency (schematic). Peaks: resonances with the ocean's modes.</figcaption>
+    </figure>
+    <p>How much heat such resonances can produce is one of the questions in my work on ocean worlds.</p>
+    <p><a href="/projects/OceanWorlds/">The tides of ocean worlds →</a></p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="sun" id="sun"><div class="journey-card">
+    <h2>The Sun</h2>
+    <p>The outer third of the Sun is convective, and its rotation supports large-scale inertial waves. With colleagues, I helped identify such modes in the solar convection zone.</p>
+    <p><a href="/projects/PlanetaryAstrophysics/">Planetary and astrophysical fluid dynamics →</a></p>
+  </div></section>
+  <div class="journey-gap" aria-hidden="true"></div>
+  <section class="journey-step" data-stop="end"><div class="journey-card">
+    <h2>Methods</h2>
+    <p>The models behind this work are computed with Kore, an open-source spectral code that we develop for rotating fluids.</p>
+    <p><a href="/projects/NumericalMethods/">Numerical methods →</a> · <a href="/">Back to the home page</a></p>
+    <p class="credit">Textures: <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a>, CC BY 4.0; Io, Europa, Ganymede and Enceladus: <a href="https://github.com/nasa/NASA-3D-Resources">NASA</a> (Galileo, Cassini). Callisto, and the gaps in Enceladus's map, are artist's impressions. JUICE's mapping orbit: after ESA's plan; BepiColombo's orbit sketched. Sizes and distances are to scale unless a caption says otherwise; speeds are not.</p>
+
+  </div></section>
+</main>
+<script type="module" src="/js/journey-lean.js"></script>
+</body>
+</html>

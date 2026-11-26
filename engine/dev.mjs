@@ -37,7 +37,7 @@ function build() {
   });
 }
 
-const watched = [config.paths.content, "engine", "geophysics.csl"];
+const watched = [config.paths.content, "engine", "geophysics.csl", "journey/src", "journey/harness", "journey/textures"]; // (journey/: the home page)
 let timer;
 for (const p of watched) {
   const full = join(root, p);

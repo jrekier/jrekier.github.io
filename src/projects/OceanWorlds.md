@@ -3,6 +3,7 @@ title: "The tides of Ocean Worlds"
 featured_image: "OceanWorlds.jpg"
 description: "Extraterrestrial Ocean dynamics"
 order: 3
+show: false # (hidden for now; the page is kept)
 ---
 
 Past space missions have revealed the existence of liquid water beneath the surfaces of Jupiter's and Saturn's icy moons. The source of energy that sustains this liquid water remains a mystery. The most probable explanation is dissipative tides raised by the parent planet, heating the moons through friction. However, the exact mechanism by which tidal energy is converted into heat is not yet fully understood.

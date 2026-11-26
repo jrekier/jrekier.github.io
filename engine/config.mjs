@@ -4,15 +4,18 @@ export default {
   origin: "https://jrekier.github.io",
   base: "", // the site lives at the root of the domain
 
+  // the home page: "journey" (the 3D journey through my research, from journey/) or "classic" (the page from templates.mjs)
+  home: "journey",
+
   name: "Jérémy Rekier",
-  description: "Scientist at the Royal Observatory of Belgium, working on the physics of the Earth's core, rotation and magnetic field.",
-  affiliation: { label: "Royal Observatory of Belgium", href: "https://www.astro.oma.be/en/" },
+  description: "Research associate at UCLouvain and guest researcher at the Royal Observatory of Belgium, working on the dynamics of fluids inside rotating planets, moons and stars.",
+  affiliation: { label: "UCLouvain", href: "https://uclouvain.be/en/" },
   lang: "en",
 
   // header navigation (full URLs for the other sites)
   nav: [
     { label: "Blog", href: "https://jrekier.github.io/bit-blog/" },
-    { label: "Notes", href: "/quartz" },
+    // { label: "Notes", href: "/quartz" }, // (the Quartz notes are gone)
     { label: "About", href: "/about/" },
   ],
 

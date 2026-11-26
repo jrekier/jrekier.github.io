@@ -143,15 +143,18 @@ async function main() {
   for (const p of projects) await write(`${p.path}index.html`, T.projectPage(site, p));
 
   // home and about
-  const home = await loadPage("index.md");
-  await write(
-    "index.html",
-    T.homePage(site, {
-      intro: await render(home.body, { path: home.file, frontmatter: home.data }),
-      projects,
-      earth: { steps: home.data.earth, fallback: await processImage(join(P.images, "earth-cutaway.png")) },
-    }),
-  );
+  if (config.home === "journey") await buildJourneyHome();
+  else {
+    const home = await loadPage("index.md");
+    await write(
+      "index.html",
+      T.homePage(site, {
+        intro: await render(home.body, { path: home.file, frontmatter: home.data }),
+        projects,
+        earth: { steps: home.data.earth, fallback: await processImage(join(P.images, "earth-cutaway.png")) },
+      }),
+    );
+  }
 
   const about = await loadPage("about.md");
   await write(
@@ -186,6 +189,64 @@ async function main() {
   });
 
   console.log(`Built home, about, ${projects.length} projects, ${Object.keys(redirects).length} redirects in ${Math.round(performance.now() - t0)} ms → ${relative(root, P.out)}/`);
+}
+
+// ---------------------------------------------------------------------------
+// The home page as the 3D journey (journey/, see journey/README.md): its page, with the site's navigation and
+// links put in, and its styles, textures and script under /journey/ (apart from the site's own /style.css)
+// ---------------------------------------------------------------------------
+
+async function buildJourneyHome() {
+  const J = join(root, "journey");
+  const c = config;
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  let page = await readFile(join(J, "harness/journey-kore/index.html"), "utf8");
+  const swap = (from, to) => {
+    if (!page.includes(from)) throw new Error(`journey page: expected to find ${from}`);
+    page = page.replaceAll(from, to);
+  };
+  for (const css of ["style", "lean", "home"]) swap(`href="/${css}.css"`, `href="/journey/${css}.css?v=${site.version}"`);
+  swap('"/textures/', '"/journey/textures/');
+  swap('src="/js/journey-kore.js"', `src="/journey/journey.js?v=${site.version}"`);
+  // the head: title, description and canonical address, and the favicons and link-preview tags of the other pages
+  const head = [
+    `<title>${esc(c.name)}</title>`,
+    `<meta name="description" content="${esc(c.description)}">`,
+    `<link rel="canonical" href="${site.abs()}">`,
+    `<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">`,
+    `<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">`,
+    `<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">`,
+    `<meta property="og:type" content="website">`,
+    `<meta property="og:site_name" content="${esc(c.name)}">`,
+    `<meta property="og:title" content="${esc(c.name)}">`,
+    `<meta property="og:description" content="${esc(c.description)}">`,
+    `<meta property="og:url" content="${site.abs()}">`,
+    `<meta property="og:image" content="${site.abs(site.image("mypic.jpg").slice(1))}">`,
+  ].join("\n");
+  page = page.replace(/<title>[^<]*<\/title>/, head);
+  // the header: the site's navigation in place of the journey's placeholders
+  const nav = c.nav.map((n) => `<a href="${esc(n.href)}">${esc(n.label)}</a>`).join(" ");
+  page = page.replace(/(<header class="site-header">[\s\S]*?)<nav>[\s\S]*?<\/nav>/, `$1<nav>${nav}</nav>`);
+  // the welcome: the profile links (ADS, GitHub, ...) under the introduction, as on the classic home page
+  const links = c.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(" · ");
+  page = page.replace(/(<section class="landing"[\s\S]*?)(<button)/, `$1<p class="landing-links">${links}</p>\n  $2`);
+  // (in the local preview, the script that reloads the page when the site is rebuilt, as in the other pages)
+  if (DEV) page = page.replace("</body>", '<script src="/__reload.js"></script>\n</body>');
+  await write("index.html", page);
+
+  await mkdir(join(P.out, "journey"), { recursive: true });
+  for (const css of ["style", "lean", "home"]) await copyFile(join(J, "harness", `${css}.css`), join(P.out, "journey", `${css}.css`));
+  await cp(join(J, "textures"), join(P.out, "journey/textures"), { recursive: true });
+  const esbuild = await import("esbuild");
+  await esbuild.build({
+    entryPoints: [join(J, "src/journey-kore.js")],
+    outfile: join(P.out, "journey/journey.js"),
+    bundle: true,
+    minify: !DEV,
+    format: "esm",
+    target: "es2020",
+    logLevel: "warning",
+  });
 }
 
 main().catch((e) => {
