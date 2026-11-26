@@ -61,7 +61,7 @@ per-stop effects `FX`, the chapter map `PART`/`ACT`.
 
 - **Plain, clear language.** No whimsy, no personification ("Jupiter does it for us" is the kind of
   thing to avoid). Scientific accuracy first; say what is illustrative.
-- **Never put the email address back** on the page.
+- **Never put the Gmail address** on the site. The work address (jeremy.rekier@uclouvain.be, `email` in `engine/config.mjs`) is shown as an Email link, put together by a script when the page loads.
 - The old posts and reading notes in the site's `archive/` were removed on purpose: keep them private,
   never publish them.
 - **Make copies; don't delete working features.** Change one thing at a time and check it with frame

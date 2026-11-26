@@ -228,8 +228,9 @@ async function buildJourneyHome() {
   const nav = c.nav.map((n) => `<a href="${esc(n.href)}">${esc(n.label)}</a>`).join(" ");
   page = page.replace(/(<header class="site-header">[\s\S]*?)<nav>[\s\S]*?<\/nav>/, `$1<nav>${nav}</nav>`);
   // the welcome: the profile links (ADS, GitHub, ...) under the introduction, as on the classic home page
-  const links = c.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`).join(" · ");
+  const links = [T.emailLink(c), ...c.links.map((l) => `<a href="${esc(l.href)}">${esc(l.label)}</a>`)].filter(Boolean).join(" · ");
   page = page.replace(/(<section class="landing"[\s\S]*?)(<button)/, `$1<p class="landing-links">${links}</p>\n  $2`);
+  if (c.email) page = page.replace("</body>", `${T.EMAIL_JS}\n</body>`);
   // (in the local preview, the script that reloads the page when the site is rebuilt, as in the other pages)
   if (DEV) page = page.replace("</body>", '<script src="/__reload.js"></script>\n</body>');
   await write("index.html", page);

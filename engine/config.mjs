@@ -17,7 +17,12 @@ export default {
     { label: "Blog", href: "https://jrekier.github.io/bit-blog/" },
     // { label: "Notes", href: "/quartz" }, // (the Quartz notes are gone)
     { label: "About", href: "/about/" },
+    { label: "CV", href: "/cv.pdf" }, // (src/static/cv.pdf: the public version, without personal contact details)
   ],
+
+  // your email, shown first among the links below. The page puts the address together when it loads, so it
+  // never appears whole in the HTML, where address harvesters look for it. (Work address only: never the Gmail.)
+  email: { user: "jeremy.rekier", domain: "uclouvain.be" },
 
   // shown under your name and in the footer, in this order
   links: [
@@ -30,7 +35,7 @@ export default {
   ],
 
   // a CV linked from the about page: put the PDF in src/static/ and set e.g. "/cv.pdf"
-  cv: "",
+  cv: "/cv.pdf",
 
   paths: {
     content: "src", // index.md, about.md, projects/*.md

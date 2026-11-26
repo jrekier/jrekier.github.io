@@ -7,9 +7,15 @@ export const esc = (s = "") =>
 export const html = (strings, ...values) =>
   strings.reduce((out, s, i) => out + s + (i < values.length ? [values[i]].flat().join("") : ""), "");
 
+/** the email link, with the address in two halves; EMAIL_JS joins them when the page loads (without
+ *  JavaScript the link leads to the About page) */
+export const emailLink = (c) =>
+  c.email ? `<a href="/about/" data-u="${esc(c.email.user)}" data-d="${esc(c.email.domain)}">Email</a>` : "";
+export const EMAIL_JS = `<script>for (const a of document.querySelectorAll("a[data-u][data-d]")) { const e = a.dataset.u + String.fromCharCode(64) + a.dataset.d; a.href = "mailto:" + e; a.title = e; }</script>`;
+
 /** Email · ADS · GitHub · … (rel="me" lets Mastodon verify the link back to this site) */
 const links = (site) =>
-  html`<p class="links">${site.config.links.map((l) => html`<a href="${l.href}" rel="me">${esc(l.label)}</a>`).join(' <span aria-hidden="true">·</span> ')}</p>`;
+  html`<p class="links">${[emailLink(site.config), ...site.config.links.map((l) => html`<a href="${l.href}" rel="me">${esc(l.label)}</a>`)].filter(Boolean).join(' <span aria-hidden="true">·</span> ')}</p>`;
 
 const affiliation = (site) => {
   const a = site.config.affiliation;
@@ -52,6 +58,7 @@ ${body}
   <p>© ${new Date().getFullYear()} ${esc(c.name)}</p>
   ${links(site)}
 </footer>
+${site.config.email ? EMAIL_JS : ""}
 ${site.dev ? '<script src="/__reload.js"></script>' : ""}
 </body>
 </html>
