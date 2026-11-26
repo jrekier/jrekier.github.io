@@ -17,9 +17,9 @@
 <!-- the welcome's state, set before the page is drawn (the journey's script, which also sets it, runs only once
      loaded: until then the caption column showed, then slid away); no transitions until the page has loaded -->
 <script>if (!location.hash) { const r = document.documentElement; r.classList.add("landing-wide", "landing-hold", "instant"); addEventListener("load", () => requestAnimationFrame(() => requestAnimationFrame(() => r.classList.remove("instant")))); }</script>
-<link rel="stylesheet" href="/journey/style.css?v=mwxr5g6t">
-<link rel="stylesheet" href="/journey/lean.css?v=mwxr5g6t">
-<link rel="stylesheet" href="/journey/home.css?v=mwxr5g6t">
+<link rel="stylesheet" href="/journey/style.css?v=mwxrnmzr">
+<link rel="stylesheet" href="/journey/lean.css?v=mwxrnmzr">
+<link rel="stylesheet" href="/journey/home.css?v=mwxrnmzr">
 <link rel="preload" as="image" type="image/webp" href="/journey/textures/earthday4k.webp" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" href="/journey/textures/earthclouds2k.webp" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" href="/journey/textures/earthday4k.lo.webp">
@@ -29,13 +29,13 @@
 <body>
 <header class="site-header">
   <a class="brand" href="/">Jérémy Rekier</a>
-  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a> <a href="/about/">About</a></nav>
+  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a> <a href="/about/">About</a> <a href="/cv.pdf">CV</a></nav>
 </header>
 <section class="landing" aria-label="Welcome">
   <img class="landing-portrait" src="/journey/textures/mypic.webp" alt="Portrait of Jérémy Rekier" width="160" height="160">
   <h1>Hi! I'm Jérémy.</h1>
   <p>I am a research associate at UCLouvain, where I also teach planetary geophysics, and a guest researcher at the Royal Observatory of Belgium. I study the dynamics of fluids inside rotating planets, moons and stars: the Earth's liquid core, the oceans of icy moons, and the convective layers of the Sun.</p>
-  <p class="landing-links"><a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&amp;sort=date%20desc">ADS</a> · <a href="https://github.com/jrekier">GitHub</a> · <a href="https://mathstodon.xyz/@jrekier">Mastodon</a> · <a href="https://bsky.app/profile/jrekier.bsky.social">Bluesky</a></p>
+  <p class="landing-links"><a href="/about/" data-u="jeremy.rekier" data-d="uclouvain.be">Email</a> · <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&amp;sort=date%20desc">ADS</a> · <a href="https://github.com/jrekier">GitHub</a> · <a href="https://mathstodon.xyz/@jrekier">Mastodon</a> · <a href="https://bsky.app/profile/jrekier.bsky.social">Bluesky</a></p>
   <button type="button" class="landing-go" data-launch>Start the journey</button>
 </section>
 <canvas class="journey-canvas" data-textures="/journey/textures/" aria-hidden="true"></canvas>
@@ -215,6 +215,7 @@
 
   </div></section>
 </main>
-<script type="module" src="/journey/journey.js?v=mwxr5g6t"></script>
+<script type="module" src="/journey/journey.js?v=mwxrnmzr"></script>
+<script>for (const a of document.querySelectorAll("a[data-u][data-d]")) { const e = a.dataset.u + String.fromCharCode(64) + a.dataset.d; a.href = "mailto:" + e; a.title = e; }</script>
 </body>
 </html>

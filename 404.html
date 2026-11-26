@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/style.css?v=mwxr5g6t">
+<link rel="stylesheet" href="/style.css?v=mwxrnmzr">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Jérémy Rekier">
 <meta property="og:title" content="Not found">
@@ -20,15 +20,16 @@
 <body>
 <header class="site-header">
   <a class="brand" href="/"><img src="/images/geology.svg" alt="" width="36" height="36"> Jérémy Rekier</a>
-  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a><a href="/about/">About</a></nav>
+  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a><a href="/about/">About</a><a href="/cv.pdf">CV</a></nav>
 </header>
 <main>
 <article class="project"><h1>Not found</h1><p>That page doesn’t exist. <a href="/">Back to the home page</a>.</p></article>
 </main>
 <footer class="site-footer">
   <p>© 2026 Jérémy Rekier</p>
-  <p class="links"><a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
+  <p class="links"><a href="/about/" data-u="jeremy.rekier" data-d="uclouvain.be">Email</a> <span aria-hidden="true">·</span> <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
 </footer>
+<script>for (const a of document.querySelectorAll("a[data-u][data-d]")) { const e = a.dataset.u + String.fromCharCode(64) + a.dataset.d; a.href = "mailto:" + e; a.title = e; }</script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/style.css?v=mwxr5g6t">
+<link rel="stylesheet" href="/style.css?v=mwxrnmzr">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Jérémy Rekier">
 <meta property="og:title" content="About">
@@ -20,7 +20,7 @@
 <body>
 <header class="site-header">
   <a class="brand" href="/"><img src="/images/geology.svg" alt="" width="36" height="36"> Jérémy Rekier</a>
-  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a><a href="/about/" aria-current="page">About</a></nav>
+  <nav><a href="https://jrekier.github.io/bit-blog/">Blog</a><a href="/about/" aria-current="page">About</a><a href="/cv.pdf">CV</a></nav>
 </header>
 <main>
 
@@ -30,8 +30,8 @@
     <h1 class="name">Jérémy Rekier</h1>
     <p class="affiliation"><a href="https://uclouvain.be/en/">UCLouvain</a></p>
     <div class="rule"></div>
-    <p class="links"><a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
-    
+    <p class="links"><a href="/about/" data-u="jeremy.rekier" data-d="uclouvain.be">Email</a> <span aria-hidden="true">·</span> <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
+    <p><a class="button" href="/cv.pdf">CV (PDF)</a></p>
   </aside>
   <div class="prose"><!-- DRAFT bio, written from your project pages and public sources: edit freely. -->
 <p>I am a research associate at <a href="https://uclouvain.be/en/">UCLouvain</a>, where I also teach planetary geophysics as a guest lecturer, and a guest researcher at the <a href="https://www.astro.oma.be/en/">Royal Observatory of Belgium</a>. I study the dynamics of rotating fluids: the liquid core of the Earth and how it couples to the planet's rotation and magnetic field, the subsurface oceans of icy moons, and the fluid layers of other planets and stars.</p>
@@ -49,8 +49,9 @@
 </main>
 <footer class="site-footer">
   <p>© 2026 Jérémy Rekier</p>
-  <p class="links"><a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
+  <p class="links"><a href="/about/" data-u="jeremy.rekier" data-d="uclouvain.be">Email</a> <span aria-hidden="true">·</span> <a href="https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc" rel="me">ADS</a> <span aria-hidden="true">·</span> <a href="https://github.com/jrekier" rel="me">GitHub</a> <span aria-hidden="true">·</span> <a href="https://mathstodon.xyz/@jrekier" rel="me">Mastodon</a> <span aria-hidden="true">·</span> <a href="https://bsky.app/profile/jrekier.bsky.social" rel="me">Bluesky</a></p>
 </footer>
+<script>for (const a of document.querySelectorAll("a[data-u][data-d]")) { const e = a.dataset.u + String.fromCharCode(64) + a.dataset.d; a.href = "mailto:" + e; a.title = e; }</script>
 
 </body>
 </html>
