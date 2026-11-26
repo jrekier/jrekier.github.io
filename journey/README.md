@@ -114,3 +114,7 @@ in the JS, unused.
 (JUICE's planned tour, ESA SPICE crema 5.2, and the moons from JPL Horizons). `textures-src/` holds the
 originals; `tools/` the scripts that make `textures/` (`textures.py`, `galileans.py`, `juice_tour.py`,
 `enceladus.py`).
+
+## Scrolling (26 Nov 2026)
+
+On wide screens the page moves from stop to stop. One trackpad swipe (momentum included), one mouse-wheel click or one arrow/Page/Space key moves one stop, and the picture plays the leg at its own pace. The page never runs more than two stops ahead of the picture. Touch and the scroll bar scroll freely, then the page settles on the nearest stop. Phones keep free scrolling. The version before this change is kept in `src/journey-kore.before-snap.js`.

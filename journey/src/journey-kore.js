@@ -3281,31 +3281,64 @@ function start() {
       cut(jump);
     });
   }
-  // The mouse wheel glides the page rather than stepping it (a notched wheel otherwise jolts story and
-  // cards alike). Touch, keys and the scroll bar are left as
-  // they are. (While JUICE's tour is open, the wheel moves its timeline instead: see there.)
-  const WHEEL_GAIN = 0.8, NOTCH = 0.45; // (NOTCH: a click of the wheel, as a share of the window's height: about 0.4 of a stop)
-  let wheelTo = null, wheelLast = 0, wheelPrev = 0;
+  // Moving through the story. On wide screens the page goes from stop to stop: one scroll gesture (a
+  // trackpad swipe, its momentum included), one click of a mouse wheel, or one key press moves it to the
+  // next stop, and the picture then plays the leg. So what's read and what's seen always agree, however
+  // fast the page is scrolled (the picture keeps to its own pace: see paceAt). Touch and the scroll bar
+  // move the page freely, and it settles on the nearest stop when they let go.
+  // Phones keep free scrolling (their captions scroll with the page and are read while scrolling); there
+  // the wheel only glides. (While JUICE's tour is open, the wheel moves its timeline instead: see there.)
+  const WHEEL_GAIN = 0.8, NOTCH = 0.45; // (phones: NOTCH is a click of the wheel, as a share of the window's height)
+  const GESTURE_GAP = 180, INTENT = 1, AHEAD = 2; // (ms of quiet that ends a gesture; px of travel that counts as a step: a macOS mouse reports a click as a few px; stops the page may run ahead of the picture)
+  let wheelTo = null, wheelLast = 0;
+  const restTop = (i) => {
+    const s = sections[i];
+    const top = narrow ? s.offsetTop : s.offsetTop + s.offsetHeight / 2 - innerHeight / 2;
+    return MathUtils.clamp(top, 0, document.documentElement.scrollHeight - innerHeight);
+  };
+  const nearestStop = (y) => {
+    let best = 0;
+    for (let i = 1; i < sections.length; i++) if (Math.abs(restTop(i) - y) < Math.abs(restTop(best) - y)) best = i;
+    return best;
+  };
+  function step(dir) {
+    const from = nearestStop(wheelTo ?? scrollY);
+    const goalStop = MathUtils.clamp(MathUtils.clamp(from + dir, Math.round(shown) - AHEAD, Math.round(shown) + AHEAD), 0, sections.length - 1);
+    glideTo(restTop(goalStop));
+  }
+  function glideTo(y) {
+    wheelTo = y;
+    if (!wheelLast) { wheelLast = performance.now(); requestAnimationFrame(glide); }
+  }
+  let gestureAt = 0, gestureDir = 0, gestureSum = 0, gestureStepped = false;
   addEventListener("wheel", (e) => {
     if (landingW > 0) { e.preventDefault(); return; } // (the welcome screen: nothing scrolls until the journey starts)
-    if (tourMode || e.ctrlKey || reducedMotion) return;
+    if (tourMode || e.ctrlKey || reducedMotion || cutting) return;
+    if (!e.deltaY || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // (sideways: not for the story)
     e.preventDefault();
-    const top = document.documentElement.scrollHeight - innerHeight;
-    // A notched mouse wheel (whole clicks: lines, or the browser's 120 per click) moves a fixed share of
-    // the way to the next stop per click, so one click is plainly felt; a trackpad's fine, continuous
-    // deltas move the page by about as much as they say.
     const clicks = e.deltaMode === 1 ? e.deltaY / 3 : Math.abs(e.deltaY) >= 50 && e.wheelDeltaY && e.wheelDeltaY % 120 === 0 ? -e.wheelDeltaY / 120 : 0;
-    let move = clicks ? clicks * NOTCH * innerHeight : e.deltaY * (e.deltaMode === 2 ? innerHeight : 1) * WHEEL_GAIN;
-    // (some systems, macOS among them, report a mouse's clicks as small pixel amounts, like a trackpad:
-    // so the first event after a pause always moves at least a fair share of a stop)
-    const now = performance.now();
-    if (now - wheelPrev > 90 && move) move = Math.sign(move) * Math.max(Math.abs(move), 0.3 * innerHeight);
-    wheelPrev = now;
-    // (never more than about two stops ahead of where the page is)
-    const from = wheelTo ?? scrollY, ahead = MathUtils.clamp(from + move - scrollY, -2.2 * innerHeight, 2.2 * innerHeight);
-    wheelTo = MathUtils.clamp(scrollY + ahead, 0, top);
-    if (!wheelLast) { wheelLast = performance.now(); requestAnimationFrame(glide); }
+    if (narrow) {
+      // phones and narrow windows: glide by what the wheel says
+      const move = clicks ? clicks * NOTCH * innerHeight : e.deltaY * (e.deltaMode === 2 ? innerHeight : 1) * WHEEL_GAIN;
+      const top = document.documentElement.scrollHeight - innerHeight;
+      const from = wheelTo ?? scrollY, ahead = MathUtils.clamp(from + move - scrollY, -2.2 * innerHeight, 2.2 * innerHeight);
+      return glideTo(MathUtils.clamp(scrollY + ahead, 0, top));
+    }
+    if (clicks) return step(Math.sign(clicks)); // (each click of a notched wheel: a stop)
+    // a trackpad, or a mouse reporting pixels: one gesture is one stop, once it has gone a little way
+    const now = e.timeStamp, dir = Math.sign(e.deltaY); // (when the event happened, not when it's handled: a busy page gets them in bursts)
+    if (now - gestureAt > GESTURE_GAP || dir !== gestureDir) { gestureDir = dir; gestureSum = 0; gestureStepped = false; }
+    gestureAt = now;
+    gestureSum += Math.abs(e.deltaY);
+    if (!gestureStepped && gestureSum >= INTENT) { gestureStepped = true; step(dir); }
   }, { passive: false });
+  addEventListener("keydown", (e) => {
+    if (narrow || landingW > 0 || tourMode || cutting || e.altKey || e.ctrlKey || e.metaKey) return void (wheelTo = null);
+    if (e.target.closest?.("input, textarea, select, [contenteditable]")) return;
+    const dir = { ArrowDown: 1, PageDown: 1, " ": e.shiftKey ? -1 : 1, ArrowUp: -1, PageUp: -1 }[e.key];
+    if (dir) { e.preventDefault(); step(dir); }
+    else if (e.key === "Home" || e.key === "End") { e.preventDefault(); glideTo(restTop(e.key === "Home" ? 0 : sections.length - 1)); }
+  });
   function glide(now) {
     if (wheelTo === null) { wheelLast = 0; return; }
     const dt = Math.min((now - wheelLast) / 1000, 0.1);
@@ -3315,9 +3348,20 @@ function start() {
     if (Math.abs(wheelTo - scrollY) < 0.5) { wheelTo = null; wheelLast = 0; return; }
     requestAnimationFrame(glide);
   }
-  // (anything else moving the page meanwhile, a key or the scroll bar, takes over from the wheel)
-  addEventListener("keydown", () => { wheelTo = null; });
-  addEventListener("pointerdown", () => { wheelTo = null; });
+  // (touch or the scroll bar takes over from a glide; when they let go, wide screens settle on the nearest stop)
+  let held = false; // (a finger, or the scroll bar, holding the page)
+  addEventListener("pointerdown", () => { wheelTo = null; held = true; });
+  for (const t of ["pointerup", "pointercancel"]) addEventListener(t, () => { held = false; settle(); });
+  let settleTimer = 0;
+  const settle = () => {
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => {
+      if (held || narrow || wheelTo !== null || landingW > 0 || tourMode || cutting || reducedMotion) return;
+      const y = restTop(nearestStop(scrollY));
+      if (Math.abs(y - scrollY) > 2) glideTo(y);
+    }, 160);
+  };
+  addEventListener("scroll", () => { if (wheelTo === null) settle(); }, { passive: true });
 
   /** fade to black, do the jump, and fade back in once the new view has drawn */
   function cut(jump) {
