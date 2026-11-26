@@ -1,0 +1,14 @@
+{
+ "m": 7,
+ "omega": 0.0,
+ "decades": 4.0,
+ "rin": 0.5,
+ "rout": 0.985,
+ "rmax": 0.985,
+ "ref": 10929.433231889234,
+ "N": 128,
+ "lmax": 70,
+ "source": [
+  "sun-mixed (mk_rz.py mix7), solution 0"
+ ]
+}

@@ -1,0 +1,59 @@
+/* the welcome screen, before the journey starts (classes on <html>: landing-wide, the scene across the
+   whole window; landing-on, the welcome shown; landing-hold, no scrolling and no captions) */
+.landing {
+  position: fixed; z-index: 4; left: 50%; top: 14vh; top: 14svh; transform: translateX(-50%);
+  width: min(34rem, calc(100vw - 3rem)); text-align: center;
+  opacity: 0; visibility: hidden; transition: opacity 0.5s, visibility 0s 0.5s;
+}
+.landing-on .landing { opacity: 1; visibility: visible; transition: opacity 0.8s; }
+.landing-portrait {
+  width: 9rem; height: 9rem; border-radius: 50%; object-fit: cover;
+  border: 1px solid rgb(255 255 255 / 0.25); box-shadow: 0 0 2.5rem rgb(0 0 0 / 0.6);
+}
+.landing h1 { margin: 1.1rem 0 0.6rem; font-size: 2.1rem; }
+.landing p { margin: 0 auto 1.6rem; color: var(--muted); line-height: 1.55; text-shadow: 0 0 1rem #04050a; }
+.landing-go {
+  font: inherit; font-size: 1rem; color: #0b0d14; background: #e5e7eb; border: 0; border-radius: 999px;
+  padding: 0.7rem 1.5rem; cursor: pointer; transition: background 0.2s;
+}
+.landing-go:hover { background: #fff; }
+.landing-go:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.landing-hold, .landing-hold body { overflow: hidden; }
+.landing-hold .journey-card, .landing-hold .journey-chapters { opacity: 0 !important; visibility: hidden !important; }
+.journey-chapters { transition: opacity 0.8s; }
+
+/* the scene fills the screen while the welcome is up, then gives way to the caption column or panel */
+.journey-canvas { transition: left 1.6s ease-in-out, width 1.6s ease-in-out, height 1.6s ease-in-out; }
+@media (min-width: 48.0625rem) {
+  .landing-wide .journey-canvas { left: 0; width: 100vw; }
+  .journey-page body::before { transition: opacity 1.6s; }
+  .landing-wide body::before { opacity: 0; }
+}
+@media (max-width: 48rem) {
+  .landing { top: 11vh; top: 11svh; }
+  .landing-portrait { width: 7rem; height: 7rem; }
+  .landing h1 { font-size: 1.7rem; }
+  .landing-wide .journey-canvas { height: 100vh; height: 100svh; }
+}
+
+/* the header stays at the top throughout the journey, so the name (back to the welcome) is always there */
+.journey-page .site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 5; margin: 0;
+  background: linear-gradient(#04050a, rgb(4 5 10 / 0.85) 60%, rgb(4 5 10 / 0));
+}
+@media (max-width: 48rem) {
+  .journey-page .site-header { padding: 0.75rem 1.25rem; background: #04050a; }
+}
+/* (the jump back to the welcome, under the fade: no animated change of the scene's size) */
+.instant .journey-canvas, .instant body::before, .instant .landing { transition: none !important; }
+/* (the list of measurements: a little smaller, so the caption fits a laptop screen) */
+.probes li { font-size: 0.93em; margin-bottom: 0.35rem; }
+/* (wide screens: captions centred in the space below the fixed header) */
+@media (min-width: 48.0625rem) {
+  .journey-page .journey-card { top: calc(50vh + 1.75rem); }
+}
+
+/* the profile links under the welcome text (put in by the site's engine) */
+.landing-links { font-size: 0.85rem; margin: 0 0 1.2rem; opacity: 0.8; }
+.landing-links a { color: inherit; }

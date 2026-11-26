@@ -1,0 +1,14 @@
+{
+ "layout": "polar",
+ "quantity": "vort",
+ "omega": 1.0,
+ "decades": 2.5,
+ "rin": 0.77,
+ "rout": 0.92,
+ "ref": 22.935795149788675,
+ "N": 200,
+ "lmax": 999,
+ "source": [
+  "enc8c"
+ ]
+}

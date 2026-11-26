@@ -1,0 +1,12 @@
+{
+ "m": 2,
+ "omega": 1.5,
+ "decades": 2.5,
+ "rin": 0.0,
+ "rout": 0.99,
+ "rmax": 1.0,
+ "Ek": null,
+ "N": 450,
+ "lmax": 241,
+ "source": "sat_e6b"
+}
