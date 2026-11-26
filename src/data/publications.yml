@@ -1,49 +1,28 @@
-# Publications shown on /about/. Each section lists citation keys from your
-# Zotero export (Better BibTeX); authors, titles, journals and DOIs are read
-# from src/bibliography.json. Lists are shown newest first.
-# arxiv: optional arXiv identifier, shown as a link.
+# Publications on /about/. The list is made automatically from your Zotero
+# export (src/bibliography.json): every item with you as an author is shown,
+# newest first, sorted by type into papers, preprints, theses and software.
+# A preprint with the same title as a published paper is folded into it as an
+# arXiv link. So adding a paper to Zotero is all it takes.
+#
+# This file only holds exceptions. Items are named by DOI or by
+# "arXiv:NNNN.NNNNN", which don't change when Zotero renames citation keys.
+# The build warns if an entry here no longer matches anything.
 
-papers:
-  - key: SeurenEtAl2025
-  - key: RekierEtAl2025
-  - key: RekierTriana2024
-  - key: ShihEtAl2023
-  - key: SeurenEtAl2023
-  - key: RekierEtAl2023a
-    arxiv: "2303.00718"
-  - key: PuicaEtAl2023
-  - key: TrianaEtAl2022
-  - key: Rekier2022a
-    arxiv: "2205.02799"
-  - key: TrianaEtAl2021
-  - key: RekierEtAl2021
-  - key: ZhuEtAl2021
-  - key: Triana2021
-  - key: StaelensEtAl2021
-  - key: Rekier2020
-    arxiv: "2004.08218"
-  - key: Rekier2019
-    arxiv: "1904.02487"
-  - key: Triana2019
-    arxiv: "1904.11837"
-  - key: Rekier2018
-    arxiv: "1904.05221"
-  - key: Dehant2017
-  - key: RekierEtAl2016
-    arxiv: "1509.08354"
-  - key: RekierEtAl2015
-    arxiv: "1409.3476"
-  - key: ClesseRekier2014
-    arxiv: "1407.1984"
+# Items to leave off the list.
+exclude:
+  - arXiv:1205.3350 # Rekier & Füzfa 2012, Cosmic acceleration with cosmological soft phonons (preprint)
+  - 10.1088/1742-6596/600/1/012062 # Rekier et al. 2015, Spherically symmetric solutions… (J. Phys. Conf. Ser.)
 
-preprints:
-  - key: RekierEtAl2025a
-    arxiv: "2507.01671"
+# Preprints published under a different title: preprint -> published paper.
+published:
+  arXiv:2507.01671: 10.1029/2026JB034733 # Constraints on Earth's CMB from nutation -> Nutation damping… (JGR 2026)
 
-theses:
-  - key: Rekier2021
-  - key: Rekier2015
-
-software:
-  - key: jeremy_rekier_2025_15008982
-  - key: RekierTriana2024a
+# arXiv links for papers whose preprint is not in Zotero.
+arxiv:
+  10.3847/PSJ/ab93c8: "2004.08218" # Rekier et al. 2020
+  10.1029/2019JE005988: "1904.02487" # Rekier et al. 2019, Enceladus
+  10.1093/gji/ggz212: "1904.11837" # Triana et al. 2019
+  10.1093/gji/ggy465: "1904.05221" # Rekier et al. 2019, GJI
+  10.1103/PhysRevD.93.043533: "1509.08354" # Rekier et al. 2016
+  10.1103/PhysRevD.91.024025: "1409.3476" # Rekier et al. 2015
+  10.1103/PhysRevD.90.083527: "1407.1984" # Clesse & Rekier 2014

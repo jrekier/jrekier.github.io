@@ -47,7 +47,8 @@ export default {
     heading: "References",
   },
   publications: {
-    file: "src/data/publications.yml",
+    file: "src/data/publications.yml", // exceptions; the list itself comes from Zotero
+    author: "Rekier", // every item with this author family name is listed
     highlight: ["Rekier, J.", "J. Rekier"], // shown in bold in author lists
     fullList: "https://ui.adsabs.harvard.edu/search/q=author%3A%22Rekier%2C%20J.%22&sort=date%20desc",
   },
