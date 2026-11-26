@@ -14,4 +14,4 @@ earth:
 
 # Hi! I'm Jérémy.
 
-I am a scientist currently working on the physics of the Earth's core and magnetic field at the Royal Observatory of Belgium.
+I am a research associate at UCLouvain, where I also teach planetary geophysics, and a guest researcher at the Royal Observatory of Belgium.

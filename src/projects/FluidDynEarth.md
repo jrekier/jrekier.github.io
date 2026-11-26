@@ -3,6 +3,7 @@ title: "Fluid dynamics of the Earth's core"
 featured_image: "mhd.png"
 description: "The interplay between the Earth's rotation and magnetic field."
 order: 1 # position on the home page
+show: false # (hidden for now; the page is kept)
 ---
 
 The Earth has a liquid layer beneath its rocky mantle. This liquid core spans about half of the Earth's radius (~3,486 km) and is primarily composed of molten iron. Electric currents within the conducting iron generate the geomagnetic field that we observe at the Earth's surface.

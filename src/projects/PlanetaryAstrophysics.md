@@ -3,6 +3,7 @@ title: "Planetary and Astrophysical Fluid Dynamics"
 featured_image: "RossbySun.png"
 description: "Inertial waves and modes in the Sun, Mercury and other rotating bodies."
 order: 2
+show: false # (hidden for now; the page is kept)
 ---
 
 Many of the fluid dynamics phenomena that take place inside the Earth's core also manifest in the fluid layers of other astrophysical objects such as planets, moons, and stars. [Rossby modes](https://jrekier.github.io/bit-blog/posts/2022-02-13-rossby/) (a special type of inertial mode) have been observed in the convective envelope of the Sun [@LoptienEtAl2018], heralding a new era in Asteroseismology (the deep probing of stars through the study of their oscillations). More oscillations of this type were later observed [@HansonEtAl2022] and later confirmed as inertial modes by our team [@TrianaEtAl2022].
